@@ -1,0 +1,18 @@
+@use '@/styles/mixins.scss';
+
+.formFieldWrapper {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  width: 250px;
+  margin-bottom: 25px;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 7px 0 7px 7px;
+  border-radius: 5px;
+}

@@ -1,12 +1,10 @@
-import { FormField } from './styles/components/molecules/FormField/FormField';
-import './styles/main.scss';
 import styles from './Root.module.scss';
 import { FormEvent } from 'react';
-import { Button } from './styles/components/atoms/Button/Button';
+import { FormField } from '@/components/molecules/FormField/FormField';
+import Button from '@/components/atoms/Button/Button';
 
 function Root() {
   const handleLoginSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     console.log('login');
   };
 
