@@ -1,22 +1,32 @@
 import styles from './Root.module.scss';
-import { FormEvent } from 'react';
 import { FormField } from '@/components/molecules/FormField/FormField';
 import Button from '@/components/atoms/Button/Button';
-
-function Root() {
-  const handleLoginSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log('login');
-  };
-
+import { Routes, Route, Link } from 'react-router-dom';
+const LoginPanel = () => {
   return (
     <div className={styles.formWrapper}>
-      <form onSubmit={handleLoginSubmit}>
+      <form>
         <h2 className={styles.signInTitle}>Sign in</h2>
         <FormField id="username" placeholder="Enter username" label="Username" />
         <FormField id="password" placeholder="Enter password" type="password" label="Password" />
-        <Button type="submit" text="Login" />
+        <Link to="/dashboard">
+          <Button text="Login" />
+        </Link>
       </form>
     </div>
+  );
+};
+
+const Dashboard = () => {
+  return <h2>dashboard</h2>;
+};
+
+function Root() {
+  return (
+    <Routes>
+      <Route path="/" element={<LoginPanel />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 

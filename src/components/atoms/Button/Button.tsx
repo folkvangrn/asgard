@@ -1,7 +1,7 @@
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  type: JSX.IntrinsicElements['button']['type'];
+  type?: JSX.IntrinsicElements['button']['type'];
   text: string;
 };
 
