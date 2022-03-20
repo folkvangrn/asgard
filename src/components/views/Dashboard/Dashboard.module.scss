@@ -1,0 +1,70 @@
+.dashboardWrapper {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 170px 1fr;
+  overflow-y: hidden;
+}
+
+.navigationWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  grid-column: 1/1;
+  grid-row: 1/3;
+}
+
+.logo {
+  height: 170px;
+  background-color: white;
+  padding: 50px 10px 50px 50px;
+
+  h2 {
+    color: #005de6;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+}
+
+.navbarItem {
+  p {
+    font-size: 20px;
+  }
+
+  padding: 15px 0 15px 20px;
+  background-color: rgb(54, 205, 247, 0.15);
+  color: var(--blue);
+  width: 90%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.dashboard {
+  background-color: var(--grey);
+}
+
+.permissionTitle {
+  font-weight: bold;
+  color: var(--blue);
+}
+
+.welcomeMessage {
+  font-size: 25px;
+  font-weight: bold;
+
+  .firstName {
+    font-weight: normal;
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 0 0 30px 30px;
+  background-color: var(--grey);
+}
