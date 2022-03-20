@@ -1,6 +1,12 @@
 .defaultButton {
-  background-color: gray;
-  color: var(--white);
   padding: 10px 20px;
   border-radius: 5px;
+  background-color: gray;
+  color: var(--white);
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: royalblue;
+  }
 }

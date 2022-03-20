@@ -1,4 +1,4 @@
-@use '@/styles/mixins.scss';
+@use '@/styles/mixins';
 
 .formFieldWrapper {
   @include mixins.flexCenter;
@@ -14,5 +14,11 @@ label {
 input {
   width: 100%;
   padding: 7px 0 7px 7px;
-  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid grey;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid royalblue;
+  }
 }

@@ -11,6 +11,7 @@ function Root() {
   return (
     <div className={styles.formWrapper}>
       <form onSubmit={handleLoginSubmit}>
+        <h2 className={styles.signInTitle}>Sign in</h2>
         <FormField id="username" placeholder="Enter username" label="Username" />
         <FormField id="password" placeholder="Enter password" type="password" label="Password" />
         <Button type="submit" text="Login" />
