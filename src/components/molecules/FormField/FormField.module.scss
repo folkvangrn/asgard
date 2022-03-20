@@ -1,0 +1,24 @@
+@use '@/styles/mixins';
+
+.formFieldWrapper {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  width: 250px;
+  margin-bottom: 25px;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input {
+  width: 100%;
+  padding: 7px 0 7px 7px;
+  border: none;
+  border-bottom: 1px solid grey;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid royalblue;
+  }
+}
