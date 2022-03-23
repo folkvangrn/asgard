@@ -44,7 +44,46 @@
 }
 
 .dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: start;
   background-color: var(--grey);
+}
+
+.table {
+  margin: 20px;
+  height: 85%;
+  width: 85%;
+  background-color: grey;
+}
+
+.tableHeader {
+  height: 15%;
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    padding: 10px 0 10px 15px;
+    font-size: 20px;
+    display: block;
+    margin-left: 40px;
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+  }
+}
+
+.addUser {
+  height: 35%;
+  font-size: 20px;
+  margin-right: 40px;
+}
+
+.tableContent {
+  height: 85%;
+  background-color: blue;
 }
 
 .permissionTitle {

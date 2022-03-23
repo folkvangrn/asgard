@@ -1,3 +1,4 @@
+import Button from '@/components/atoms/Button/Button';
 import styles from './Dashboard.module.scss';
 
 type NavbarItemProps = {
@@ -32,7 +33,15 @@ export function Dashboard() {
           Welcome back, <span className={styles.firstName}>James</span>
         </h3>
       </header>
-      <div className={styles.dashboard}>Dashboard</div>
+      <main className={styles.dashboard}>
+        <div className={styles.table}>
+          <div className={styles.tableHeader}>
+            <input placeholder="Search" type="text" />
+            <Button text="Add admin" className={styles.addUser} />
+          </div>
+          <div className={styles.tableContent}></div>
+        </div>
+      </main>
     </div>
   );
 }
