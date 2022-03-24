@@ -1,9 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { LoginPanel } from './components/organisms/LoginPanel/LoginPanel';
-
-const Dashboard = () => {
-  return <h2>dashboard</h2>;
-};
+import { Dashboard } from './components/views/Dashboard/Dashboard';
 
 function Root() {
   return (

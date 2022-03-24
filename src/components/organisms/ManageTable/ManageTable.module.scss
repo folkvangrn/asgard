@@ -1,0 +1,48 @@
+.tableWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: var(--grey);
+}
+
+.table {
+  height: 85%;
+  width: 85%;
+  border-radius: 15px;
+}
+
+.tableHeader {
+  height: 15%;
+  background-color: var(--blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+  input {
+    padding: 10px 0 10px 15px;
+    font-size: 20px;
+    display: block;
+    margin-left: 40px;
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+  }
+}
+
+.addUser {
+  height: 35%;
+  font-size: 20px;
+  margin-right: 40px;
+  background-color: var(--white) !important;
+  color: var(--blue) !important;
+}
+
+.tableContent {
+  height: 85%;
+  background-color: var(--white);
+  border: 2px solid var(--blue);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
