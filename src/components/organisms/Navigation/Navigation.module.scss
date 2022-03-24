@@ -11,14 +11,15 @@
   height: 170px;
   background-color: white;
   padding: 50px 10px 50px 50px;
+}
 
-  h2 {
-    color: #005de6;
-  }
+.companyName {
+  color: var(--blue);
+  font-weight: bold;
+}
 
-  p {
-    margin-top: 10px;
-  }
+.userRoleInfo {
+  margin-top: 10px;
 }
 
 .navbarItem {

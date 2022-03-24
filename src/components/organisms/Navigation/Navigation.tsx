@@ -12,14 +12,14 @@ const NavbarItem = ({ text }: NavbarItemProps) => {
   );
 };
 
-const routes = ['Admins', 'Workers', 'Managers', 'Clients'];
+const routes = ['admins', 'workers', 'managers', 'clients'];
 
 export function Navigation() {
   return (
     <div className={styles.navigationWrapper}>
       <div className={styles.logo}>
-        <h2>Vehicle Remedy</h2>
-        <p>
+        <h1 className={styles.companyName}>Vehicle Remedy</h1>
+        <p className={styles.userRoleInfo}>
           Logged as <span className={styles.permissionTitle}>Admin</span>
         </p>
       </div>
