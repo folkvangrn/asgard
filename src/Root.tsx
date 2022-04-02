@@ -6,7 +6,7 @@ function Root() {
   return (
     <Routes>
       <Route path="/" element={<LoginPanel />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/:roles" element={<Dashboard />} />
     </Routes>
   );
 }
