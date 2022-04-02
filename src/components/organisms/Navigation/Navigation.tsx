@@ -1,13 +1,16 @@
+import { Link } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
 type NavbarItemProps = {
-  text: string;
+  roles: string;
 };
 
-const NavbarItem = ({ text }: NavbarItemProps) => {
+const NavbarItem = ({ roles }: NavbarItemProps) => {
   return (
     <div className={styles.navbarItem}>
-      <p>{text}</p>
+      <Link className={styles.navLink} to={`/dashboard/${roles}`}>
+        <p>{roles}</p>
+      </Link>
     </div>
   );
 };
@@ -25,7 +28,7 @@ export function Navigation() {
       </div>
       <nav>
         {routes.map((route) => (
-          <NavbarItem text={route} />
+          <NavbarItem roles={route} />
         ))}
       </nav>
     </div>

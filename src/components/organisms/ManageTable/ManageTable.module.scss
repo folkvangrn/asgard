@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: start;
-  background-color: var(--grey);
+  background-color: var(--lightGrey);
 }
 
 .table {
@@ -32,9 +32,8 @@
 }
 
 .addUser {
-  height: 35%;
-  font-size: 20px;
   margin-right: 40px;
+  font-size: 18px;
   background-color: var(--white) !important;
   color: var(--blue) !important;
 }
