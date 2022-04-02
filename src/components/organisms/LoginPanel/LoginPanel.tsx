@@ -10,7 +10,7 @@ export function LoginPanel() {
         <h2 className={styles.signInTitle}>Sign in</h2>
         <FormField id="username" placeholder="Enter username" label="Username" />
         <FormField id="password" placeholder="Enter password" type="password" label="Password" />
-        <Link to="/dashboard">
+        <Link to="/dashboard/admins">
           <Button text="Login" />
         </Link>
       </form>
