@@ -6,17 +6,17 @@
 }
 
 .table {
-  height: 85%;
+  height: 75vh;
   width: 85%;
   border-radius: 15px;
 }
 
 .tableHeader {
-  height: 15%;
-  background-color: var(--blue);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 15%;
+  background-color: var(--blue);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 
@@ -39,7 +39,12 @@
 }
 
 .tableContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   height: 85%;
+  overflow-y: auto;
   background-color: var(--white);
   border: 2px solid var(--blue);
   border-bottom-left-radius: 15px;

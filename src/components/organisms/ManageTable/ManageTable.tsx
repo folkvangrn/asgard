@@ -1,4 +1,5 @@
 import Button from '@/components/atoms/Button/Button';
+import { ManageTableItem } from '@/components/atoms/ManageTableItem/ManageTableItem';
 import { useParams } from 'react-router-dom';
 import styles from './ManageTable.module.scss';
 
@@ -17,7 +18,15 @@ export function ManageTable() {
           <input placeholder="Search" type="text" />
           <Button text={`Add ${role}`} className={styles.addUser} />
         </div>
-        <div className={styles.tableContent}></div>
+        <div className={styles.tableContent}>
+          <ManageTableItem />
+          <ManageTableItem />
+          <ManageTableItem /> <ManageTableItem /> <ManageTableItem />
+          <ManageTableItem />
+          <ManageTableItem /> <ManageTableItem />
+          <ManageTableItem /> <ManageTableItem />
+          <ManageTableItem /> <ManageTableItem />
+        </div>
       </div>
     </main>
   );
