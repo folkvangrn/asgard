@@ -3,9 +3,10 @@ import { ManageTableItem } from '@/components/atoms/ManageTableItem/ManageTableI
 import { FormField } from '@/components/molecules/FormField/FormField';
 import { User, UserRole } from '@/types/User';
 import { useParams } from 'react-router-dom';
+import { UserModal } from '../UserModal/UserModal';
 import styles from './ManageTable.module.scss';
 
-const singularizeRolesName = (roles: string): string => {
+const singularizeRoleName = (roles: string): string => {
   return roles.slice(0, -1);
 };
 
@@ -19,7 +20,7 @@ const tempUser: User = {
 
 export function ManageTable() {
   const { roles } = useParams();
-  const role = singularizeRolesName(roles ?? '');
+  const role = singularizeRoleName(roles ?? '');
 
   return (
     <main className={styles.tableWrapper}>
@@ -30,36 +31,11 @@ export function ManageTable() {
         </div>
         <div className={styles.tableContent}>
           <ManageTableItem userData={tempUser} />
-          <div className={styles.editWrapper}>
-            <header className={styles.editHeader}>
-              <h3>Edit {role}</h3>
-            </header>
-            <form className={styles.editableContent}>
-              <FormField
-                id="firstName"
-                placeholder="Edit first name"
-                label="First name"
-                key={'firstName'}
-              />
-              <FormField
-                id="lastName"
-                placeholder="Edit last name"
-                label="Last name"
-                key={'lastName'}
-              />
-              <FormField
-                id="password"
-                placeholder="Edit password"
-                label="Password"
-                type="password"
-                key={'password'}
-              />
-              <div className={styles.buttonsWrapper}>
-                <Button text="Submit" type="submit" />
-                <Button text="Cancel" />
-              </div>
-            </form>
-          </div>
+          <UserModal headerText={`Edit ${role}`} buttonText="Submit">
+            <FormField id="firstName" placeholder="Edit first name" label="First name" />
+            <FormField id="lastName" placeholder="Edit last name" label="Last name" />
+            <FormField id="password" placeholder="Edit password" label="Password" type="password" />
+          </UserModal>
         </div>
       </div>
     </main>
