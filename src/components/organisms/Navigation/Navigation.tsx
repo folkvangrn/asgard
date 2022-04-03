@@ -15,7 +15,7 @@ const NavbarItem = ({ roles }: NavbarItemProps) => {
   );
 };
 
-const routes = ['admins', 'workers', 'managers', 'clients'];
+const routes = ['admins', 'workers', 'managers'];
 
 export function Navigation() {
   return (
