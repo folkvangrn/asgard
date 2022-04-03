@@ -1,0 +1,10 @@
+@use '@/styles/mixins';
+
+.role {
+  @include mixins.flexCenter;
+  width: 70px;
+  height: 40px;
+  background-color: lightgreen;
+  border-radius: 10px;
+  color: white;
+}

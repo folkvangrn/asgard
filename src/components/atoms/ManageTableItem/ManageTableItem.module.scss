@@ -1,7 +1,21 @@
 .wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   width: 95%;
   min-height: 85px;
   margin-top: 20px;
   background-color: var(--lightGrey);
   border-radius: 20px;
+}
+
+.nameDetails {
+  display: flex;
+
+  p {
+    margin-right: 5px;
+    font-weight: bold;
+    color: var(--blue);
+  }
 }
