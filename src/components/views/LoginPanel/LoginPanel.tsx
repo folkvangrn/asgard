@@ -1,4 +1,4 @@
-import Button from '@/components/atoms/Button/Button';
+import { Button } from '@/components/atoms/Button/Button';
 import { FormField } from '@/components/molecules/FormField/FormField';
 import { Link } from 'react-router-dom';
 import styles from './LoginPanel.module.scss';

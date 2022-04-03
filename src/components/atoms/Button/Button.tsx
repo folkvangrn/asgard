@@ -7,12 +7,10 @@ type ButtonProps = {
   className?: string;
 };
 
-function Button({ type = 'button', text, className }: ButtonProps) {
+export function Button({ type = 'button', text, className }: ButtonProps) {
   return (
     <button className={classnames(styles.defaultButton, className)} type={type}>
       {text}
     </button>
   );
 }
-
-export default Button;

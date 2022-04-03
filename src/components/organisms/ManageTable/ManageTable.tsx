@@ -1,9 +1,9 @@
-import Button from '@/components/atoms/Button/Button';
+import { useParams } from 'react-router-dom';
 import { ManageTableItem } from '@/components/atoms/ManageTableItem/ManageTableItem';
 import { FormField } from '@/components/molecules/FormField/FormField';
 import { User, UserRole } from '@/types/User';
-import { useParams } from 'react-router-dom';
-import { UserModal } from '../UserModal/UserModal';
+import { UserModal } from '@/components/organisms/UserModal/UserModal';
+import {Button} from '@/components/atoms/Button/Button';
 import styles from './ManageTable.module.scss';
 
 const singularizeRoleName = (roles: string): string => {

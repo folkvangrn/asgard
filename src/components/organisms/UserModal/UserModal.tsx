@@ -1,4 +1,4 @@
-import Button from '@/components/atoms/Button/Button';
+import { Button } from '@/components/atoms/Button/Button';
 import styles from './UserModal.module.scss';
 
 type UserModalProps = {
