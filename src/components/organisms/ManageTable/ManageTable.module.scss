@@ -1,3 +1,5 @@
+@use '@/styles/mixins';
+
 .tableWrapper {
   display: flex;
   justify-content: center;
@@ -39,6 +41,7 @@
 }
 
 .tableContent {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,4 +52,49 @@
   border: 2px solid var(--blue);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+}
+
+.editWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  width: 60vh;
+  border: 1px solid var(--blue);
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.editHeader {
+  @include mixins.flexCenter;
+  height: 15%;
+  background-color: var(--blue);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  h3 {
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+}
+
+.editableContent {
+  @include mixins.flexCenter;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 70%;
+  background-color: var(--white);
+}
+
+.buttonsWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  text-align: end;
+  background-color: var(--white);
 }

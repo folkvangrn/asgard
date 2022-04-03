@@ -17,7 +17,7 @@ export function ManageTableItem({ userData }: ManageTabkeItemProps) {
       </div>
       <Role role={userData.role} />
       <Button text="Edit" />
-      <button>{userData?.isActive ? 'Deactivate' : 'Activate'}</button>
+      <Button text={userData?.isActive ? 'Deactivate' : 'Activate'} />
     </div>
   );
 }
