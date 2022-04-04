@@ -1,15 +1,29 @@
 import { Button } from '@/components/atoms/Button/Button';
 import styles from './UserModal.module.scss';
+import Modal from 'react-modal';
 
 type UserModalProps = {
   headerText: string;
   buttonText: string;
   children: JSX.Element[];
+  isOpen: boolean;
+  handleClose: () => void;
 };
 
-export function UserModal({ headerText, buttonText, children }: UserModalProps) {
+export function UserModal({
+  headerText,
+  buttonText,
+  children,
+  isOpen,
+  handleClose,
+}: UserModalProps) {
   return (
-    <div className={styles.modalWrapper}>
+    <Modal
+      isOpen={isOpen}
+      className={styles.modalWrapper}
+      appElement={document.getElementById('root')}
+      onRequestClose={handleClose}
+    >
       <header className={styles.modalHeader}>
         <h3>{headerText}</h3>
       </header>
@@ -17,9 +31,9 @@ export function UserModal({ headerText, buttonText, children }: UserModalProps) 
         {children}
         <div className={styles.buttonsWrapper}>
           <Button text={buttonText} type="submit" />
-          <Button text="Cancel" />
+          <Button text="Cancel" onClick={handleClose} />
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
