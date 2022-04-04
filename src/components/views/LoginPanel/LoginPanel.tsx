@@ -8,14 +8,8 @@ export function LoginPanel() {
     <div className={styles.formWrapper}>
       <form className={styles.loginForm}>
         <h2 className={styles.signInTitle}>Sign in</h2>
-        <FormField id="username" placeholder="Enter username" label="Username" key={'username'} />
-        <FormField
-          id="password"
-          placeholder="Enter password"
-          type="password"
-          label="Password"
-          key={'password'}
-        />
+        <FormField id="username" placeholder="Enter username" label="Username" />
+        <FormField id="password" placeholder="Enter password" type="password" label="Password" />
         <Link to="/dashboard/admins">
           <Button text="Login" />
         </Link>

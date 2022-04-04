@@ -1,8 +1,7 @@
-import React from 'react';
-import { User, UserRole } from '@/types/User';
+import { User } from '@/types/User';
 import styles from './ManageTableItem.module.scss';
-import Button from '../Button/Button';
-import { Role } from '../Role/Role';
+import { Role } from '@/components/atoms/Role/Role';
+import { Button } from '@/components/atoms/Button/Button';
 
 type ManageTabkeItemProps = {
   userData: User;

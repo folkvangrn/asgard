@@ -3,7 +3,7 @@ import { ManageTableItem } from '@/components/atoms/ManageTableItem/ManageTableI
 import { FormField } from '@/components/molecules/FormField/FormField';
 import { User, UserRole } from '@/types/User';
 import { UserModal } from '@/components/organisms/UserModal/UserModal';
-import {Button} from '@/components/atoms/Button/Button';
+import { Button } from '@/components/atoms/Button/Button';
 import styles from './ManageTable.module.scss';
 
 const singularizeRoleName = (roles: string): string => {
