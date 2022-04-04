@@ -1,6 +1,6 @@
 import { Button } from '@/components/atoms/Button/Button';
 import styles from './UserModal.module.scss';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 
 type UserModalProps = {
   headerText: string;
@@ -10,15 +10,9 @@ type UserModalProps = {
   handleClose: () => void;
 };
 
-export function UserModal({
-  headerText,
-  buttonText,
-  children,
-  isOpen,
-  handleClose,
-}: UserModalProps) {
+export function Modal({ headerText, buttonText, children, isOpen, handleClose }: UserModalProps) {
   return (
-    <Modal
+    <ReactModal
       isOpen={isOpen}
       className={styles.modalWrapper}
       appElement={document.getElementById('root')}
@@ -34,6 +28,6 @@ export function UserModal({
           <Button text="Cancel" onClick={handleClose} />
         </div>
       </form>
-    </Modal>
+    </ReactModal>
   );
 }
