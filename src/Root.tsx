@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { LoginPanel } from './components/organisms/LoginPanel/LoginPanel';
+import { LoginPanel } from './components/views/LoginPanel/LoginPanel';
 import { Dashboard } from './components/views/Dashboard/Dashboard';
 
 function Root() {

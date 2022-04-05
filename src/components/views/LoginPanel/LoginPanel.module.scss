@@ -1,12 +1,11 @@
 @use '@/styles/mixins';
 
-form {
+.loginForm {
   @include mixins.flexCenter;
   flex-direction: column;
   padding: 50px;
-  border: 1px solid royalblue;
+  border: 1px solid var(--blue);
   border-radius: 10px;
-  box-shadow: 0 0 1em royalblue;
 }
 
 .formWrapper {

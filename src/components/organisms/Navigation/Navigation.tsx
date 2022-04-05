@@ -28,7 +28,7 @@ export function Navigation() {
       </div>
       <nav>
         {routes.map((route) => (
-          <NavbarItem roles={route} />
+          <NavbarItem roles={route} key={route} />
         ))}
       </nav>
     </div>

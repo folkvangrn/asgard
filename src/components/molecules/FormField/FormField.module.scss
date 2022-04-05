@@ -2,13 +2,14 @@
 
 .formFieldWrapper {
   @include mixins.flexCenter;
-  flex-direction: column;
+  flex-direction: row;
   width: 250px;
   margin-bottom: 25px;
 }
 
 label {
   margin-bottom: 8px;
+  width: 100%;
 }
 
 input {
