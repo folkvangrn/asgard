@@ -1,9 +1,10 @@
 import { Button } from '@/components/atoms/Button/Button';
 import { FormField } from '@/components/molecules/FormField/FormField';
 import { Link } from 'react-router-dom';
-import styles from './LoginPanel.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+import styles from './LoginPanel.module.scss';
 
 export function LoginPanel() {
   const formik = useFormik({
