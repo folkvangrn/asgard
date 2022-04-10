@@ -5,7 +5,7 @@ import axios from 'axios';
 interface IAuthContext {
   user: LoggedUser | null;
   signIn: (username: string, pasword: string) => void;
-  signOut: () => void;
+  // signOut: () => void;
 }
 interface LoggedUser extends User {
   token: string;
@@ -14,7 +14,7 @@ interface LoggedUser extends User {
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
   signIn: () => {},
-  signOut: () => {},
+  // signOut: () => {},
 });
 
 type AuthProviderProps = {
@@ -26,25 +26,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const userData = await fetch('http://localhost:8000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-      console.log('response', await response.json());
+      const dupa = await userData.json();
+      setUser(dupa);
     } catch (e) {
       console.error(e);
     }
   };
 
-  const signOut = () => {
-    setUser(null);
-    localStorage.removeItem('token');
-  };
+  // const signOut = () => {
+  //   setUser(null);
+  //   localStorage.removeItem('token');
+  // };
 
-  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, signIn }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

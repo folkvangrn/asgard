@@ -7,7 +7,7 @@ function Root() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<LoginPanel />} />
+        <Route path="/" element={<LoginPanel />}/>
         <Route path="/dashboard/:roles" element={<Dashboard />} />
       </Routes>
     </AuthProvider>

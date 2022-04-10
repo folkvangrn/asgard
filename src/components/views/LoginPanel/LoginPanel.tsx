@@ -1,14 +1,14 @@
 import { Button } from '@/components/atoms/Button/Button';
 import { FormField } from '@/components/molecules/FormField/FormField';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import styles from './LoginPanel.module.scss';
 import { useAuth } from '@/hooks/useAuth';
-
 export function LoginPanel() {
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -21,6 +21,10 @@ export function LoginPanel() {
     }),
     onSubmit: (values) => {
       auth.signIn(values.username, values.password);
+
+      if (auth.user !== null) {
+        navigate('/dashboard/managers', { replace: true });
+      }
     },
   });
 
@@ -49,9 +53,7 @@ export function LoginPanel() {
           error={formik.errors.password}
           handleBlur={formik.handleBlur}
         />
-        {/* <Link to="/dashboard/admins"> */}
         <Button text="Login" type="submit" />
-        {/* </Link> */}
       </form>
     </div>
   );
