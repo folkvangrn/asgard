@@ -5,8 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import styles from './LoginPanel.module.scss';
+import { useAuth } from '@/hooks/useAuth';
 
 export function LoginPanel() {
+  const auth = useAuth();
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -17,7 +20,7 @@ export function LoginPanel() {
       password: Yup.string().required('Required'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      auth.signIn(values.username, values.password);
     },
   });
 
