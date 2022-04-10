@@ -5,7 +5,7 @@ import axios from 'axios';
 interface IAuthContext {
   user: LoggedUser | null;
   signIn: (username: string, pasword: string) => void;
-  // signOut: () => void;
+  signOut: VoidFunction;
 }
 interface LoggedUser extends User {
   token: string;
@@ -14,7 +14,7 @@ interface LoggedUser extends User {
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
   signIn: () => {},
-  // signOut: () => {},
+  signOut: () => {},
 });
 
 type AuthProviderProps = {
@@ -33,19 +33,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         },
         body: JSON.stringify({ username, password }),
       });
-      const dupa = await userData.json();
-      setUser(dupa);
+
+      setUser(await userData.json());
     } catch (e) {
       console.error(e);
     }
   };
 
-  // const signOut = () => {
-  //   setUser(null);
-  //   localStorage.removeItem('token');
-  // };
+  const signOut = () => {
+    setUser(null);
+    localStorage.removeItem('token');
+  };
 
-  return <AuthContext.Provider value={{ user, signIn }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

@@ -5,7 +5,7 @@ type ButtonProps = {
   type?: JSX.IntrinsicElements['button']['type'];
   text: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: VoidFunction;
 };
 
 export function Button({ type = 'button', text, className, onClick }: ButtonProps) {
