@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth';
 import Root from './Root';
-import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/_index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Root />
-    </Router>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/*" element={<Root />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -1,14 +1,22 @@
+import { useEffect } from 'react';
+import { useAuth } from '@/hooks/useAuth';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@/components/atoms/Button/Button';
 import { FormField } from '@/components/molecules/FormField/FormField';
-import { useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import styles from './LoginPanel.module.scss';
-import { useAuth } from '@/hooks/useAuth';
+
 export function LoginPanel() {
   const auth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const firstPath = auth.paths.at(0);
+    if (auth.user?.isActive) navigate(`/dashboard/${firstPath}`, { replace: true });
+  }, [auth.user]);
 
   const formik = useFormik({
     initialValues: {
@@ -21,10 +29,6 @@ export function LoginPanel() {
     }),
     onSubmit: (values) => {
       auth.signIn(values.username, values.password);
-
-      if (auth.user !== null) {
-        navigate('/dashboard/managers', { replace: true });
-      }
     },
   });
 

@@ -1,35 +1,45 @@
-import { Link } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
 type NavbarItemProps = {
-  roles: string;
+  path: string;
 };
 
-const NavbarItem = ({ roles }: NavbarItemProps) => {
+const NavbarItem = ({ path }: NavbarItemProps) => {
   return (
     <div className={styles.navbarItem}>
-      <Link className={styles.navLink} to={`/dashboard/${roles}`}>
-        <p>{roles}</p>
+      <Link className={styles.navLink} to={`/dashboard/${path}`}>
+        <p>{path}</p>
       </Link>
     </div>
   );
 };
 
-const routes = ['admins', 'workers', 'managers'];
-
 export function Navigation() {
+  const { user, paths, signOut } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <div className={styles.navigationWrapper}>
       <div className={styles.logo}>
         <h1 className={styles.companyName}>Vehicle Remedy</h1>
         <p className={styles.userRoleInfo}>
-          Logged as <span className={styles.permissionTitle}>Admin</span>
+          Logged as <span className={styles.permissionTitle}>{user?.role}</span>
         </p>
       </div>
       <nav>
-        {routes.map((route) => (
-          <NavbarItem roles={route} key={route} />
+        {paths.map((path) => (
+          <NavbarItem path={path} key={path} />
         ))}
+        <button
+          onClick={() => {
+            signOut();
+            navigate('/', { replace: true });
+          }}
+        >
+          Sign out
+        </button>
       </nav>
     </div>
   );

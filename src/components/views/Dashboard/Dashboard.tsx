@@ -7,7 +7,7 @@ export function Dashboard() {
   return (
     <div className={styles.dashboardWrapper}>
       <Navigation />
-      <Header name="James" />
+      <Header />
       <ManageTable />
     </div>
   );
