@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { RequireAuth } from './components/RequireAuth';
 import { Dashboard } from './components/views/Dashboard/Dashboard';
 import { LoginPanel } from './components/views/LoginPanel/LoginPanel';
@@ -6,7 +6,6 @@ import { Layout } from './Layout';
 import { UserRole } from './types/User';
 
 function Root() {
-  const navigate = useNavigate();
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

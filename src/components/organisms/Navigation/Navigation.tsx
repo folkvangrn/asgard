@@ -25,7 +25,7 @@ export function Navigation() {
       <div className={styles.logo}>
         <h1 className={styles.companyName}>Vehicle Remedy</h1>
         <p className={styles.userRoleInfo}>
-          Logged as <span className={styles.permissionTitle}>{user?.role}</span>
+          Logged as <span className={styles.userRole}>{user?.role}</span>
         </p>
       </div>
       <nav>

@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       //   'http://localhost:8000/login',
       //   {
       //     username,
-      //     password: 'test',
+      //     password,
       //   },
       //   {
       //     headers: {
