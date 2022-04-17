@@ -1,10 +1,10 @@
+import { useModal } from '@/hooks/useModal';
 import { User } from '@/types/User';
-import styles from './ManageTableItem.module.scss';
+import { Modal } from '@/components/organisms/UserModal/UserModal';
 import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
 import { FormField } from '@/components/molecules/FormField/FormField';
-import { Modal } from '@/components/organisms/UserModal/UserModal';
-import { useModal } from '@/hooks/useModal';
+import styles from './ManageTableItem.module.scss';
 
 type ManageTabkeItemProps = {
   userData: User;
@@ -23,7 +23,7 @@ export function ManageTableItem({ userData }: ManageTabkeItemProps) {
       <Button text="Edit" onClick={handleOpenModal} />
       <Button text={userData?.isActive ? 'Deactivate' : 'Activate'} />
       <Modal
-        headerText={`Add ${userData.role}`}
+        headerText={`Edit ${userData.role}`}
         buttonText="Edit"
         isOpen={isModalOpen}
         handleClose={handleCloseModal}
