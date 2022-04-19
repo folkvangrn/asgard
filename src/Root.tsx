@@ -1,7 +1,8 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { RequireAuth } from './components/RequireAuth';
 import { Dashboard } from './components/views/Dashboard/Dashboard';
 import { LoginPanel } from './components/views/LoginPanel/LoginPanel';
+import { DefaultRoute } from './DefaultRoute';
 import { Layout } from './Layout';
 import { UserRole } from './types/User';
 
@@ -21,7 +22,7 @@ function Root() {
           <Route path="dashboard/requests" element={<Dashboard />} />
           <Route path="dashboard/requests/:id" element={<Dashboard />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<DefaultRoute />} />
       </Route>
     </Routes>
   );

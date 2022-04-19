@@ -1,4 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
+import { UserRole } from '@/types/User';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
@@ -16,9 +17,21 @@ const NavbarItem = ({ path }: NavbarItemProps) => {
   );
 };
 
+export const getPathsByRole = (role: UserRole) => {
+  switch (role) {
+    case UserRole.Worker:
+      return ['requests'];
+    case UserRole.Manager:
+      return ['requests', 'workers'];
+    case UserRole.Admin:
+      return ['users'];
+  }
+};
+
 export function Navigation() {
-  const { user, paths, signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const paths = getPathsByRole(user?.role!);
 
   return (
     <div className={styles.navigationWrapper}>
