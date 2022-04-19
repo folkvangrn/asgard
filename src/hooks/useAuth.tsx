@@ -1,12 +1,11 @@
 import { User, UserRole } from './../types/User';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface IAuthContext {
   user: LoggedUser | null;
   signIn: (username: string, pasword: string) => void;
   signOut: VoidFunction;
-  paths: string[];
 }
 interface LoggedUser extends User {
   token: string;
@@ -25,26 +24,23 @@ const AuthContext = React.createContext<IAuthContext>({
   user: null,
   signIn: () => {},
   signOut: () => {},
-  paths: [],
 });
 
 type AuthProviderProps = {
   children: JSX.Element;
 };
 
-const getPathsByRole = (role: UserRole) => {
-  switch (role) {
-    case UserRole.Worker:
-      return ['requests'];
-    case UserRole.Manager:
-      return ['requests', 'workers'];
-    case UserRole.Admin:
-      return ['users'];
-  }
-};
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<LoggedUser | null>(null);
-  const [paths, setPaths] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    console.log('storedUser', storedUser);
+
+    if (!storedUser) return;
+    const parsedUser = JSON.parse(storedUser!);
+    setUser(parsedUser);
+  }, []);
 
   const signIn = async (username: string, password: string) => {
     try {
@@ -67,8 +63,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       //   },
       //   body: JSON.stringify({ username, password }),
       // });
-      setPaths(getPathsByRole(userData.role));
       setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
     } catch (e) {
       console.error(e);
     }
@@ -76,12 +72,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signOut = () => {
     setUser(null);
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
-  return (
-    <AuthContext.Provider value={{ user, signIn, signOut, paths }}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
