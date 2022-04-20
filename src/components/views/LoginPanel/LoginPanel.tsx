@@ -16,7 +16,7 @@ export function LoginPanel() {
 
   useEffect(() => {
     const defaultRoute = getDefaultRoute(user?.role);
-    if (user?.isActive) navigate(`/dashboard/${defaultRoute}`, { replace: true });
+    if (user?.token) navigate(`${defaultRoute}`, { replace: true });
   }, [user]);
 
   const formik = useFormik({
