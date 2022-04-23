@@ -1,15 +1,14 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { RequireAuth } from './components/RequireAuth';
 import { Dashboard } from './components/views/Dashboard/Dashboard';
 import { LoginPanel } from './components/views/LoginPanel/LoginPanel';
-import { DefaultRoute } from './DefaultRoute';
-import { Layout } from './Layout';
+import { DefaultRoute } from './routes/DefaultRoute';
 import { UserRole } from './types/User';
 
 function Root() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Outlet />}>
         <Route path="/" element={<LoginPanel />} />
         <Route element={<RequireAuth allowedRoles={[UserRole.Admin]} />}>
           <Route path="dashboard/users" element={<Dashboard />} />

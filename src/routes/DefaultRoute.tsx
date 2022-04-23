@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { getDefaultRoute } from './helpers/navigation';
-import { useAuth } from './hooks/useAuth';
+import { getDefaultRoute } from '@/helpers/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export function DefaultRoute() {
   const { user } = useAuth();

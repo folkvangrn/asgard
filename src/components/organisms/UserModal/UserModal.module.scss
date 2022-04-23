@@ -29,18 +29,10 @@
   }
 }
 
-.userContent {
+.modalContent {
   @include mixins.flexCenter;
   justify-content: space-evenly;
   flex-direction: column;
   height: 70%;
-  background-color: var(--white);
-}
-
-.buttonsWrapper {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  text-align: end;
   background-color: var(--white);
 }
