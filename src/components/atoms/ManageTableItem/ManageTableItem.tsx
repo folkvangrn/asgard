@@ -3,17 +3,17 @@ import { Role } from '@/components/atoms/Role/Role';
 import styles from './ManageTableItem.module.scss';
 
 type ManageTabkeItemProps = {
-  userData: User;
+  user: User;
 };
 
-export function ManageTableItem({ userData }: ManageTabkeItemProps) {
+export function ManageTableItem({ user }: ManageTabkeItemProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.nameDetails}>
-        <p>{userData?.firstName}</p>
-        <p>{userData?.lastName}</p>
+        <p>{user?.firstName}</p>
+        <p>{user?.lastName}</p>
       </div>
-      <Role role={userData.role} />
+      <Role role={user.role} />
     </div>
   );
 }
