@@ -11,20 +11,20 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
 
-label {
-  width: 100%;
-}
+  label {
+    width: 100%;
+  }
 
-input {
-  width: 150%;
-  padding: 7px 0 7px 7px;
-  border-radius: 5px;
-  border: 1px solid var(--blue);
+  input {
+    width: 150%;
+    padding: 7px 0 7px 7px;
+    border-radius: 5px;
+    border: 1px solid var(--blue);
 
-  &:focus {
-    outline: none;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
