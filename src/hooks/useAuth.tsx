@@ -1,6 +1,5 @@
-import { User, UserRole } from './../types/User';
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { User, UserRole } from '@/types/User';
 
 interface IAuthContext {
   user: LoggedUser | null;
@@ -11,14 +10,14 @@ interface LoggedUser extends User {
   token: string;
 }
 
-const userData: LoggedUser = {
-  id: '1',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  role: UserRole.Manager,
-  isActive: true,
-  token: 'test',
-};
+// const userData: LoggedUser = {
+//   id: '1',
+//   username: 'test',
+//   firstName: 'firstName',
+//   lastName: 'lastName',
+//   role: UserRole.Admin,
+//   token: 'test',
+// };
 
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
@@ -35,8 +34,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    console.log('storedUser', storedUser);
-
+    const tok = localStorage.getItem('token');
+    console.log(storedUser);
+    console.log(tok);
     if (!storedUser) return;
     const parsedUser = JSON.parse(storedUser!);
     setUser(parsedUser);
@@ -44,27 +44,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      // const userData = await axios.post(
-      //   'http://localhost:8000/login',
-      //   {
-      //     username,
-      //     password,
-      //   },
-      //   {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   },
-      // );
-      // const userData = await fetch('http://localhost:8000/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, password }),
-      // });
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      const userData = await response.json();
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('token', userData.token);
     } catch (e) {
       console.error(e);
     }
@@ -73,6 +64,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signOut = () => {
     setUser(null);
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
   };
 
   return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
