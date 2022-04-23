@@ -11,3 +11,7 @@ export interface User {
   lastName: string;
   role: UserRole;
 }
+
+export interface LoggedUser extends User {
+  token: string;
+}
