@@ -1,0 +1,36 @@
+@use '@/styles/mixins';
+
+.textFieldWrapper {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+input {
+  width: 150%;
+  padding: 7px 0 7px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--blue);
+  }
+}
+
+.errorMessage {
+  margin-top: 5px;
+  color: var(--error);
+}

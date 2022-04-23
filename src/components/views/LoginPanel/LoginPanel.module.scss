@@ -1,19 +1,28 @@
 @use '@/styles/mixins';
 
-.loginForm {
-  @include mixins.flexCenter;
-  flex-direction: column;
-  padding: 50px;
-  border: 1px solid var(--blue);
-  border-radius: 10px;
-}
-
 .formWrapper {
   @include mixins.flexCenter;
   height: 100vh;
   width: 100vw;
 }
 
+.loginForm {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  padding: 35px 60px;
+  border: 1px solid var(--blue);
+  border-radius: 10px;
+}
+
 .signInTitle {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+}
+
+.formikForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.centeredButton{
+  margin: 0 auto;
 }
