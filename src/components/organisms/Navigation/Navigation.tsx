@@ -20,9 +20,9 @@ const NavbarItem = ({ path }: NavbarItemProps) => {
 export const getPathsByRole = (role: UserRole) => {
   switch (role) {
     case UserRole.Worker:
-      return ['requests'];
+      return ['activities'];
     case UserRole.Manager:
-      return ['requests', 'workers'];
+      return ['requests', 'activities'];
     case UserRole.Admin:
       return ['users'];
   }

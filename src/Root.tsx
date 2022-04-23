@@ -14,11 +14,11 @@ function Root() {
         <Route element={<RequireAuth allowedRoles={[UserRole.Admin]} />}>
           <Route path="dashboard/users" element={<Dashboard />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[UserRole.Manager]} />}>
-          <Route path="dashboard/workers/" element={<Dashboard />} />
-          <Route path="dashboard/workers/:id" element={<Dashboard />} />
+        <Route element={<RequireAuth allowedRoles={[UserRole.Manager, UserRole.Worker]} />}>
+          <Route path="dashboard/activities/" element={<Dashboard />} />
+          <Route path="dashboard/activities/:id" element={<Dashboard />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[UserRole.Worker, UserRole.Manager]} />}>
+        <Route element={<RequireAuth allowedRoles={[UserRole.Manager]} />}>
           <Route path="dashboard/requests" element={<Dashboard />} />
           <Route path="dashboard/requests/:id" element={<Dashboard />} />
         </Route>
