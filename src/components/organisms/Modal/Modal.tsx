@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import styles from './UserModal.module.scss';
+import styles from './Modal.module.scss';
 
 type ModalProps = {
   headerText: string;
