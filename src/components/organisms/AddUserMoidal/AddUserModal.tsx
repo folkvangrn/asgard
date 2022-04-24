@@ -1,10 +1,11 @@
-import { Modal } from '../Modal/Modal';
 import { Form, Formik } from 'formik';
-import { UserRole } from '@/types/User';
+import { Modal } from '@/components/molecules/Modal/Modal';
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import * as Yup from 'yup';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
+import { UserRole } from '@/types/User';
+import * as Yup from 'yup';
+import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
 
 type AddUserFormValues = {
   firstName: string;
@@ -14,7 +15,12 @@ type AddUserFormValues = {
   password: string;
 };
 
-export function UserModal({ isOpen, handleCloseModal }) {
+type UserModalProps = {
+  isOpen: boolean;
+  handleCloseModal: VoidFunction;
+};
+
+export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
   const initialValues: AddUserFormValues = {
     firstName: '',
     lastName: '',
@@ -52,7 +58,7 @@ export function UserModal({ isOpen, handleCloseModal }) {
             <option value={UserRole.Manager}>Manager</option>
             <option value={UserRole.Admin}>Admin</option>
           </SelectFieldInput>
-          <Button text="Submit" type="submit" />
+          <FormButtons buttonsText={['Submit', 'Cancel']} handleCloseForm={handleCloseModal} />
         </Form>
       </Formik>
     </Modal>
