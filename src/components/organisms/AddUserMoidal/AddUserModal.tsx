@@ -2,7 +2,6 @@ import { Form, Formik } from 'formik';
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { Button } from '@/components/atoms/Button/Button';
 import { UserRole } from '@/types/User';
 import * as Yup from 'yup';
 import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
@@ -29,8 +28,20 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
     password: '',
   };
 
-  const handleAddUser = (values: AddUserFormValues) => {
-    console.log(values);
+  const handleAddUser = async (values: AddUserFormValues) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/users/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...values, active: true }),
+      });
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
