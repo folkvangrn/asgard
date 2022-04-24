@@ -7,9 +7,10 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  height: 60vh;
+  height: 70vh;
   width: 60vh;
   border: 1px solid var(--blue);
+  background-color: var(--white);
   border-radius: 10px;
   z-index: 2;
 }
