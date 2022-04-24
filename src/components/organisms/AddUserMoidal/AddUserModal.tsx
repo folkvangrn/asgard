@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
+
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { UserRole } from '@/types/User';
-import * as Yup from 'yup';
 import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
 
 type AddUserFormValues = {
@@ -20,6 +22,8 @@ type UserModalProps = {
 };
 
 export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
+  const [message, setMessage] = useState<string>('');
+
   const initialValues: AddUserFormValues = {
     firstName: '',
     lastName: '',
@@ -28,7 +32,7 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
     password: '',
   };
 
-  const handleAddUser = async (values: AddUserFormValues) => {
+  const handleAddUser = async (values: AddUserFormValues, { resetForm }) => {
     try {
       const response = await fetch('http://localhost:8000/api/users/register', {
         method: 'POST',
@@ -39,8 +43,14 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
         body: JSON.stringify({ ...values, active: true }),
       });
       console.log(response);
+      if (response.status === 200) {
+        setMessage('User has been added succesfully!');
+        resetForm();
+      } else {
+        setMessage('There was a problem when adding a user.');
+      }
     } catch (e) {
-      console.error(e);
+      setMessage('There was a problem when adding a user.');
     }
   };
 
@@ -70,6 +80,7 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
             <option value={UserRole.Admin}>Admin</option>
           </SelectFieldInput>
           <FormButtons buttonsText={['Submit', 'Cancel']} handleCloseForm={handleCloseModal} />
+          {message ?? <p>{message}</p>}
         </Form>
       </Formik>
     </Modal>
