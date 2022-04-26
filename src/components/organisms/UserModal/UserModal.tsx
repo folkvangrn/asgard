@@ -5,10 +5,10 @@ import * as Yup from 'yup';
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { UserRole } from '@/types/User';
+import { User, UserRole } from '@/types/User';
 import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
 
-type AddUserFormValues = {
+type UserFormValues = {
   firstName: string;
   lastName: string;
   role: UserRole;
@@ -19,20 +19,24 @@ type AddUserFormValues = {
 type UserModalProps = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
+  initialUser?: User;
+  editMode?: boolean;
 };
 
-export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
+export function UserModal({ isOpen, handleCloseModal, initialUser, editMode }: UserModalProps) {
+  const headerText = editMode ? 'Edit user' : 'Add user';
+
   const [message, setMessage] = useState<string>('');
 
-  const initialValues: AddUserFormValues = {
-    firstName: '',
-    lastName: '',
-    role: UserRole.Worker,
-    username: '',
-    password: '',
+  const initialValues: UserFormValues = {
+    firstName: initialUser?.firstName || '',
+    lastName: initialUser?.lastName || '',
+    role: initialUser?.role || UserRole.Worker,
+    username: initialUser?.username || '',
+    password: initialUser?.password || '',
   };
 
-  const handleAddUser = async (values: AddUserFormValues, { resetForm }) => {
+  const handleAddUser = async (values: UserFormValues, { resetForm }) => {
     try {
       const response = await fetch('http://localhost:8000/api/users/register', {
         method: 'POST',
@@ -42,7 +46,6 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
         },
         body: JSON.stringify({ ...values, active: true }),
       });
-      console.log(response);
       if (response.status === 200) {
         setMessage('User has been added succesfully!');
         resetForm();
@@ -55,7 +58,7 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
   };
 
   return (
-    <Modal headerText="Add User" isOpen={isOpen} handleClose={handleCloseModal}>
+    <Modal headerText={headerText} isOpen={isOpen} handleClose={handleCloseModal}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleAddUser}
@@ -72,7 +75,7 @@ export function UserModal({ isOpen, handleCloseModal }: UserModalProps) {
         <Form>
           <TextFieldInput label="First name" name="firstName" />
           <TextFieldInput label="Last name" name="lastName" />
-          <TextFieldInput label="Username" name="username" />
+          <TextFieldInput label="Username" name="username" disabled={!!initialUser} />
           <TextFieldInput label="Password" name="password" type="password" />
           <SelectFieldInput label="Role" name="role">
             <option value={UserRole.Worker}>Worker</option>
