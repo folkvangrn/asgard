@@ -30,7 +30,7 @@ export function LoginPanel() {
 
   useEffect(() => {
     const defaultRoute = getDefaultRoute(user?.role);
-    if (user?.token) navigate(`${defaultRoute}`, { replace: true });
+    if (user?.lastName) navigate(`${defaultRoute}`, { replace: true });
   }, [user]);
 
   return (
