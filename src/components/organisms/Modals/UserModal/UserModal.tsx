@@ -36,7 +36,10 @@ export function UserModal({ isOpen, handleCloseModal, initialUser, editMode }: U
     password: initialUser?.password || '',
   };
 
-  const handleAddUser = async (values: UserFormValues, { resetForm }) => {
+  const handleAddUser = async (
+    values: UserFormValues,
+    { resetForm }: { resetForm: VoidFunction },
+  ) => {
     try {
       const response = await fetch('http://localhost:8000/api/users/register', {
         method: 'POST',
@@ -65,22 +68,23 @@ export function UserModal({ isOpen, handleCloseModal, initialUser, editMode }: U
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
           lastName: Yup.string().required('Required'),
-          role: Yup.mixed()
-            .oneOf([UserRole.Admin, UserRole.Manager, UserRole.Worker])
-            .required('Required'),
+          role: Yup.mixed<UserRole>().oneOf(Object.values(UserRole)).required('Required'),
           username: Yup.string().required('Required'),
           password: Yup.string().required('Required'),
         })}
+        className="formWrapper"
       >
-        <Form>
+        <Form className="formWrapper" id="dupa">
           <TextFieldInput label="First name" name="firstName" />
           <TextFieldInput label="Last name" name="lastName" />
           <TextFieldInput label="Username" name="username" disabled={!!initialUser} />
           <TextFieldInput label="Password" name="password" type="password" />
           <SelectFieldInput label="Role" name="role">
-            <option value={UserRole.Worker}>Worker</option>
-            <option value={UserRole.Manager}>Manager</option>
-            <option value={UserRole.Admin}>Admin</option>
+            {Object.entries(UserRole).map(([key, value]) => (
+              <option key={key} value={value}>
+                {key}
+              </option>
+            ))}
           </SelectFieldInput>
           <FormButtons buttonsText={['Submit', 'Cancel']} handleCloseForm={handleCloseModal} />
           {message ?? <p>{message}</p>}
