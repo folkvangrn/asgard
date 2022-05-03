@@ -4,42 +4,39 @@ import * as Yup from 'yup';
 
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
-import { User, UserRole } from '@/types/User';
 
-type UserFormValues = {
+type ClientFormValues = {
   firstName: string;
   lastName: string;
-  role: UserRole;
-  username: string;
-  password: string;
+  phone: string;
 };
 
 type UserModalProps = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
-  initialUser?: User;
+  initialClient?: Client;
   editMode?: boolean;
 };
 
-export function UserModal({ isOpen, handleCloseModal, initialUser, editMode }: UserModalProps) {
-  const headerText = editMode ? 'Edit user' : 'Add user';
+type Client = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+};
+
+export function ClientModal({ isOpen, handleCloseModal, initialClient, editMode }: UserModalProps) {
+  const headerText = editMode ? 'Edit Client' : 'Add client';
 
   const [message, setMessage] = useState<string>('');
 
-  const initialValues: UserFormValues = {
-    firstName: initialUser?.firstName || '',
-    lastName: initialUser?.lastName || '',
-    role: initialUser?.role || UserRole.Worker,
-    username: initialUser?.username || '',
-    password: initialUser?.password || '',
+  const initialValues: ClientFormValues = {
+    firstName: initialClient?.firstName || '',
+    lastName: initialClient?.lastName || '',
+    phone: initialClient?.phone || '',
   };
 
-  const handleAddUser = async (
-    values: UserFormValues,
-    { resetForm }: { resetForm: VoidFunction },
-  ) => {
+  const handleAddClient = async (values: ClientFormValues, resetForm: any) => {
     try {
       const response = await fetch('http://localhost:8000/api/users/register', {
         method: 'POST',
@@ -64,31 +61,21 @@ export function UserModal({ isOpen, handleCloseModal, initialUser, editMode }: U
     <Modal headerText={headerText} isOpen={isOpen} handleClose={handleCloseModal}>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleAddUser}
+        onSubmit={handleAddClient}
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
           lastName: Yup.string().required('Required'),
-          role: Yup.mixed<UserRole>().oneOf(Object.values(UserRole)).required('Required'),
-          username: Yup.string().required('Required'),
-          password: Yup.string().required('Required'),
+          phone: Yup.string()
+            .matches(/[1-9]{1}[0-9]{8}/, 'Invalid phone number')
+            .required('Required'),
         })}
-        className="formWrapper"
       >
         <FormWrapper handleCloseForm={handleCloseModal}>
           <TextFieldInput label="First name" name="firstName" />
           <TextFieldInput label="Last name" name="lastName" />
-          <TextFieldInput label="Username" name="username" disabled={!!initialUser} />
-          <TextFieldInput label="Password" name="password" type="password" />
-          <SelectFieldInput label="Role" name="role">
-            {Object.entries(UserRole).map(([key, value]) => (
-              <option key={key} value={value}>
-                {key}
-              </option>
-            ))}
-          </SelectFieldInput>
+          <TextFieldInput label="Phone" name="phone" />
         </FormWrapper>
       </Formik>
-      {message ? <p>{message}</p> : null}
     </Modal>
   );
 }

@@ -12,7 +12,7 @@ const userData: LoggedUser = {
   username: 'test',
   firstName: 'firstName',
   lastName: 'lastName',
-  role: UserRole.Admin,
+  role: UserRole.Manager,
   token: 'test',
   password: 'test',
 };

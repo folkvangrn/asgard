@@ -11,15 +11,15 @@ function Root() {
       <Route path="/" element={<Outlet />}>
         <Route path="/" element={<LoginPanel />} />
         <Route element={<RequireAuth allowedRoles={[UserRole.Admin]} />}>
-          <Route path="dashboard/users" element={<Dashboard />} />
+          <Route path="dashboard/users" element={<Dashboard role={UserRole.Admin} />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[UserRole.Manager, UserRole.Worker]} />}>
-          <Route path="dashboard/activities/" element={<Dashboard />} />
-          <Route path="dashboard/activities/:id" element={<Dashboard />} />
+        <Route element={<RequireAuth allowedRoles={[UserRole.Worker]} />}>
+          <Route path="dashboard/activities/" element={<Dashboard role={UserRole.Worker} />} />
+          <Route path="dashboard/activities/:id" element={<Dashboard role={UserRole.Worker} />} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[UserRole.Manager]} />}>
-          <Route path="dashboard/requests" element={<Dashboard />} />
-          <Route path="dashboard/requests/:id" element={<Dashboard />} />
+          <Route path="dashboard/requests" element={<Dashboard role={UserRole.Manager} />} />
+          <Route path="dashboard/requests/:id" element={<Dashboard role={UserRole.Manager} />} />
         </Route>
         <Route path="*" element={<DefaultRoute />} />
       </Route>
