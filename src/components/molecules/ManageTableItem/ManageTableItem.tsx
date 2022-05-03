@@ -1,8 +1,8 @@
-import { User } from '@/types/User';
+import { useModal } from '@/hooks/useModal';
 import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
-import { useModal } from '@/hooks/useModal';
-import { UserModal } from '@/components/organisms/UserModal/UserModal';
+import { UserModal } from '@/components/organisms/Modals/UserModal/UserModal';
+import { User } from '@/types/User';
 import styles from './ManageTableItem.module.scss';
 
 type ManageTabkeItemProps = {

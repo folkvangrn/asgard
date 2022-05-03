@@ -16,7 +16,7 @@ export function SelectFieldInput({ label, ...props }: SelectFieldInputProps) {
         <label htmlFor={props.name}>{label}</label>
         <select {...field} {...props} />
       </div>
-      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
+      {meta.touched && meta.error ? <div className={styles.errorMessage}>{meta.error}</div> : null}
     </div>
   );
 }
