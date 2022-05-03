@@ -7,14 +7,15 @@ interface IAuthContext {
   signOut: VoidFunction;
 }
 
-// const userData: LoggedUser = {
-//   id: '1',
-//   username: 'test',
-//   firstName: 'firstName',
-//   lastName: 'lastName',
-//   role: UserRole.Admin,
-//   token: 'test',
-// };
+const userData: LoggedUser = {
+  id: 1,
+  username: 'test',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  role: UserRole.Admin,
+  token: 'test',
+  password: 'test',
+};
 
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
@@ -38,17 +39,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:8000/login', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const userData = await response.json();
-      setUser(userData.data);
-      localStorage.setItem('user', JSON.stringify(userData.data));
+      // const response = await fetch('http://localhost:8000/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ username, password }),
+      // });
+      // const userData = await response.json();
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
     } catch (e) {
       console.error(e);

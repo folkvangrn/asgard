@@ -22,7 +22,7 @@ export const getPathsByRole = (role: UserRole) => {
     case UserRole.Worker:
       return ['activities'];
     case UserRole.Manager:
-      return ['requests', 'activities'];
+      return ['requests'];
     case UserRole.Admin:
       return ['users'];
   }
