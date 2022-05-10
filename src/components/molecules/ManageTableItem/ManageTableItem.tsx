@@ -1,19 +1,22 @@
 import { useModal } from '@/hooks/useModal';
+
 import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
 import { UserModal } from '@/components/organisms/Modals/UserModal/UserModal';
-import { User } from '@/types/User';
+
+import { ListUser } from '@/types/User';
+
 import styles from './ManageTableItem.module.scss';
 
 type ManageTabkeItemProps = {
-  user: User;
+  user: ListUser;
 };
 
 export function ManageTableItem({ user }: ManageTabkeItemProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} key={user.id}>
       <div className={styles.gridChild}>
         <p className={styles.nameDetails}>
           {user.firstName} {user.lastName}
@@ -26,16 +29,8 @@ export function ManageTableItem({ user }: ManageTabkeItemProps) {
         <Button text="Edit" onClick={handleOpenModal} />
       </div>
       {isModalOpen ? (
-        <UserModal
-          isOpen={isModalOpen}
-          handleCloseModal={handleCloseModal}
-          initialUser={user}
-          editMode
-        />
+        <UserModal isOpen={isModalOpen} handleCloseModal={handleCloseModal} initialUser={user} />
       ) : null}
-      <div className={styles.gridChild}>
-        <Button text="Deactivate" />
-      </div>
     </div>
   );
 }

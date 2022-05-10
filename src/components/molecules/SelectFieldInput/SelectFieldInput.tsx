@@ -4,9 +4,8 @@ import styles from './SelectFieldInput.module.scss';
 
 type SelectFieldInputProps = {
   label: string;
-  props?: SelectHTMLAttributes<HTMLInputElement>;
   name: string;
-};
+} & SelectHTMLAttributes<HTMLSelectElement>;
 
 export function SelectFieldInput({ label, ...props }: SelectFieldInputProps) {
   const [field, meta] = useField(props);
