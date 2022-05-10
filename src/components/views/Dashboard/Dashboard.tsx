@@ -5,23 +5,27 @@ import styles from './Dashboard.module.scss';
 import { UserRole } from '@/types/User';
 import { ManagerManageTable } from '@/components/organisms/ManageTables/ManagerManageTable/ManagerManageTable';
 
-const ManageTableByRole: React.FC<{ role: UserRole }> = ({ role }) => {
-  switch (role) {
-    case UserRole.Admin:
+const ManageTableByRole: React.FC<{ path: string }> = ({ path }) => {
+  switch (path) {
+    case 'users':
       return <AdminManageTable />;
-    case UserRole.Manager:
+    case 'vehicles':
+      return <ManagerManageTable />;
+    case 'clients':
+      return <ManagerManageTable />;
+    case 'requests':
       return <ManagerManageTable />;
     default:
       return null;
   }
 };
 
-export function Dashboard(prop: { role: UserRole }) {
+export function Dashboard(prop: { path: string }) {
   return (
     <div className={styles.dashboardWrapper}>
       <Navigation />
       <Header />
-      <ManageTableByRole role={prop.role} />
+      <ManageTableByRole path={prop.path} />
     </div>
   );
 }
