@@ -5,18 +5,12 @@ export enum UserRole {
 }
 
 export type User = {
+  id?: number;
   firstName: string;
   lastName: string;
   role: UserRole;
   username: string;
   active: boolean;
+  password?: string;
+  token?: string;
 };
-
-export type ListUser = {
-  id: number;
-} & User;
-
-export type LoggedUser = {
-  token: string;
-  password: string;
-} & ListUser;

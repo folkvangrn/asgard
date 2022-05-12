@@ -1,14 +1,13 @@
 import { Header } from '@/components/atoms/Header/Header';
-import { AdminManageTable } from '@/components/organisms/ManageTables/AdminManageTable/AdminManageTable';
+import { UsersList } from '@/components/organisms/UsersList/UsersList';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
 import styles from './Dashboard.module.scss';
-import { UserRole } from '@/types/User';
 import { ManagerManageTable } from '@/components/organisms/ManageTables/ManagerManageTable/ManagerManageTable';
 
-const ManageTableByRole: React.FC<{ path: string }> = ({ path }) => {
+const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
     case 'users':
-      return <AdminManageTable />;
+      return <UsersList />;
     case 'vehicles':
       return <ManagerManageTable />;
     case 'clients':
@@ -25,7 +24,7 @@ export function Dashboard(prop: { path: string }) {
     <div className={styles.dashboardWrapper}>
       <Navigation />
       <Header />
-      <ManageTableByRole path={prop.path} />
+      <ManageTableByPath path={prop.path} />
     </div>
   );
 }

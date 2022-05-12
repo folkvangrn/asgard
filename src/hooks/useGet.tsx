@@ -25,7 +25,6 @@ export const useGet = <T extends any>({ query, skip }: UseGetArgs) => {
 
   useEffect(() => {
     try {
-      console.log('skip', skip);
       if (skip !== true) {
         getData();
       }
@@ -41,5 +40,6 @@ export const useGet = <T extends any>({ query, skip }: UseGetArgs) => {
     data,
     isLoading,
     error,
+    refetchData: getData,
   };
 };
