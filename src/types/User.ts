@@ -4,15 +4,13 @@ export enum UserRole {
   Worker = 'worker',
 }
 
-export interface User {
-  id: number;
+export type User = {
+  id?: number;
   firstName: string;
   lastName: string;
   role: UserRole;
   username: string;
-  password: string;
-}
-
-export interface LoggedUser extends User {
-  token: string;
-}
+  active: boolean;
+  password?: string;
+  token?: string;
+};

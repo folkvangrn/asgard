@@ -2,11 +2,7 @@ import { useField } from 'formik';
 import { InputHTMLAttributes } from 'react';
 import styles from './TextFieldInput.module.scss';
 
-type TextFieldInputProps = {
-  label: string;
-  props?: InputHTMLAttributes<HTMLInputElement>;
-  name: string;
-};
+type TextFieldInputProps = { label: string; name: string } & InputHTMLAttributes<HTMLInputElement>;
 
 export function TextFieldInput({ label, name, ...props }: TextFieldInputProps) {
   const [field, meta] = useField(name);
