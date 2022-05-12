@@ -2,10 +2,10 @@ import * as Yup from 'yup';
 
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { GenericForm } from '../GenericForm';
+import { GenericCreateForm } from '../GenericCreateForm';
 import { User, UserRole } from '@/types/User';
 
-type UserModalProps = {
+type CreateUserProps = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
   userId?: number | undefined;
@@ -14,7 +14,7 @@ type UserModalProps = {
 
 const GET_USERS_QUERY = 'http://localhost:8000/api/users';
 
-export function UserModal({ isOpen, handleCloseModal, userId, refetchUsers }: UserModalProps) {
+export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: CreateUserProps) {
   const initialValues: User = {
     firstName: '',
     lastName: '',
@@ -25,7 +25,7 @@ export function UserModal({ isOpen, handleCloseModal, userId, refetchUsers }: Us
   };
 
   return (
-    <GenericForm
+    <GenericCreateForm
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       initialId={userId}
@@ -62,6 +62,6 @@ export function UserModal({ isOpen, handleCloseModal, userId, refetchUsers }: Us
           </option>
         </SelectFieldInput>
       ) : null}
-    </GenericForm>
+    </GenericCreateForm>
   );
 }

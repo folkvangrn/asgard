@@ -2,7 +2,7 @@ import { useModal } from '@/hooks/useModal';
 
 import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
-import { UserModal } from '@/components/organisms/Modals/UserModal/UserModal';
+import { CreateUser } from '@/components/organisms/CreateForms/CreateUser/CreateUser';
 
 import { User } from '@/types/User';
 
@@ -30,7 +30,7 @@ export function UsersListItem({ user, refetchUsers }: UsersListItemProps) {
         <Button text="Edit" onClick={handleOpenModal} />
       </div>
       {isModalOpen ? (
-        <UserModal
+        <CreateUser
           isOpen={isModalOpen}
           handleCloseModal={handleCloseModal}
           userId={user.id}

@@ -1,7 +1,7 @@
 import { useGet } from '@/hooks/useGet';
 import { useModal } from '@/hooks/useModal';
 
-import { UserModal } from '@/components/organisms/Modals/UserModal/UserModal';
+import { CreateUser } from '@/components/organisms/CreateForms/CreateUser/CreateUser';
 import { UsersListItem } from '@/components/molecules/ListItems/UsersListItem/UsersListItem';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 
@@ -22,7 +22,7 @@ export function UsersList() {
   return (
     <ListWrapper handleOpenModal={handleOpenModal} singularName="user" isLoading={isLoading}>
       {isModalOpen ? (
-        <UserModal
+        <CreateUser
           isOpen={isModalOpen}
           handleCloseModal={handleCloseModal}
           refetchUsers={refetchData}

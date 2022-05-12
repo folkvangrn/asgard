@@ -1,21 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { LoggedUser, UserRole } from '@/types/User';
+import { User, UserRole } from '@/types/User';
 
 interface IAuthContext {
-  user: LoggedUser | null;
+  user: User | null;
   signIn: (username: string, pasword: string) => void;
   signOut: VoidFunction;
 }
 
-const userData: LoggedUser = {
-  id: 1,
-  username: 'test',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  role: UserRole.Manager,
-  token: 'test',
-  password: 'test',
-};
+// const userData: LoggedUser = {
+//   id: 1,
+//   username: 'test',
+//   firstName: 'firstName',
+//   lastName: 'lastName',
+//   role: UserRole.Admin,
+//   token: 'test',
+//   password: 'test',
+//   active: true,
+// };
 
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
@@ -28,7 +29,7 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<LoggedUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -39,15 +40,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      // const response = await fetch('http://localhost:8000/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, password }),
-      // });
-      // const userData = await response.json();
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      const userData = await response.json();
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);

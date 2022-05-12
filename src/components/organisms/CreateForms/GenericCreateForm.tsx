@@ -7,7 +7,7 @@ import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
 import { User } from '@/types/User';
 import { Vehicle } from '@/types/Vehicle';
 
-type GenericFormProps<T> = {
+type GenericCreateForm<T> = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
   initialFormValues: T;
@@ -23,7 +23,7 @@ const getHeaderText = (isEditMode: boolean, singularName: string): string => {
   return !isEditMode ? `Add ${singularName}` : `Edit ${singularName}`;
 };
 
-export function GenericForm<T extends User | Vehicle>({
+export function GenericCreateForm<T extends User | Vehicle>({
   isOpen,
   handleCloseModal,
   initialId,
@@ -33,7 +33,7 @@ export function GenericForm<T extends User | Vehicle>({
   validationSchema,
   query,
   refetchData,
-}: GenericFormProps<T>) {
+}: GenericCreateForm<T>) {
   const headerText = getHeaderText(!!initialId, singularName);
   const [message, setMessage] = useState<string>('');
 
