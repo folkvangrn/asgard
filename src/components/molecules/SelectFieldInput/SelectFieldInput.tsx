@@ -14,8 +14,9 @@ export function SelectFieldInput({ label, isEmpty, ...props }: SelectFieldInputP
     <div className={styles.textFieldWrapper}>
       <div className={styles.inputWrapper}>
         <label htmlFor={props.name}>{label}</label>
-        {!isEmpty ? <select {...field} {...props} /> : <p>{`${label} list is empty`}</p>}
+        <select {...field} {...props} />
       </div>
+      {isEmpty && <p>{`${label} list is empty`}</p>}
       {meta.touched && meta.error ? <div className={styles.errorMessage}>{meta.error}</div> : null}
     </div>
   );
