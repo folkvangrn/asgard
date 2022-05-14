@@ -3,7 +3,7 @@ import { useGet } from '@/hooks/useGet';
 
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { GenericCreateForm } from '../GenericCreateForm';
+import { GenericCreateForm } from './GenericCreateForm';
 
 import { Vehicle } from '@/types/Vehicle';
 import { Client } from '@/types/Client';
@@ -71,9 +71,9 @@ export function CreateVehicle({
         <p>{clientsError}</p>
       ) : (
         <SelectFieldInput label="Client" name="client" isEmpty={clients?.length === 0}>
-          {clients?.map(({ id, firstName, lastName, phone }) => {
+          {clients?.map(({ id, firstName, lastName, phoneNumber }) => {
             <option key={id} value={id}>
-              {`${firstName} ${lastName} ${phone}`}
+              {`${firstName} ${lastName} ${phoneNumber}`}
             </option>;
           })}
         </SelectFieldInput>

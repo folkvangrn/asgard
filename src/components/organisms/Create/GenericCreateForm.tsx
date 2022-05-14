@@ -4,8 +4,7 @@ import { useGet } from '@/hooks/useGet';
 
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
-import { User } from '@/types/User';
-import { Vehicle } from '@/types/Vehicle';
+import { User, Client, Vehicle } from '@/types';
 
 type GenericCreateForm<T> = {
   isOpen: boolean;
@@ -23,7 +22,7 @@ const getHeaderText = (isEditMode: boolean, singularName: string): string => {
   return !isEditMode ? `Add ${singularName}` : `Edit ${singularName}`;
 };
 
-export function GenericCreateForm<T extends User | Vehicle>({
+export function GenericCreateForm<T extends User | Vehicle | Client>({
   isOpen,
   handleCloseModal,
   initialId,

@@ -1,38 +1,38 @@
 import { useGet } from '@/hooks/useGet';
 import { useModal } from '@/hooks/useModal';
 
-import { CreateVehicle } from '@/components/organisms/CreateForms/CreateVehicle/CreateVehicle';
+import { UsersListItem } from '@/components/molecules/ListItems/UsersListItem/UsersListItem';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 
-import { Vehicle } from '@/types/Vehicle';
+import { User } from '@/types/User';
+import { CreateUser } from '../Create/CreateUser';
 
-export function VehicleList() {
+export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
 
   const {
-    data: vehicles,
+    data: users,
     error,
     isLoading,
-    refetchData: refetchVehicles,
-  } = useGet<Vehicle[] | undefined>({
-    query: 'shttp://localhost:8000/api/vehicles',
+    refetchData,
+  } = useGet<User[] | undefined>({
+    query: 'http://localhost:8000/api/users',
   });
 
   return (
-    <ListWrapper handleOpenModal={handleOpenModal} singularName="vehicle" isLoading={isLoading}>
+    <ListWrapper handleOpenModal={handleOpenModal} singularName="user" isLoading={isLoading}>
       {isModalOpen ? (
-        <CreateVehicle
+        <CreateUser
           isOpen={isModalOpen}
           handleCloseModal={handleCloseModal}
-          refetchVehicles={refetchVehicles}
+          refetchUsers={refetchData}
         />
       ) : null}
-      <p>hi</p>
-      {/* {error ? (
+      {error ? (
         <p>{error}</p>
       ) : (
         users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} />)
-      )} */}
+      )}
     </ListWrapper>
   );
 }
