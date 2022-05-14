@@ -17,13 +17,12 @@ function Root() {
         </Route>
         <Route element={<RequireAuth allowedRoles={[UserRole.Worker]} />}>
           <Route path="dashboard/activities/" element={<Dashboard path="activities" />} />
-          {/* <Route path="dashboard/activities/:id" element={<Dashboard path="activities" />} /> */}
         </Route>
         <Route element={<RequireAuth allowedRoles={[UserRole.Manager]} />}>
+          <Route path="dashboard/vehicles" element={<Dashboard path="vehicles" />} />
           <Route path="dashboard/requests" element={<Dashboard path="requests" />} />
           {/* <Route path="dashboard/requests/:id" element={<Dashboard path="requests" />} /> */}
           <Route path="dashboard/clients" element={<Dashboard path="clients" />} />
-          <Route path="dashboard/vehicles" element={<Dashboard path="vehicles" />} />
         </Route>
         <Route path="*" element={<DefaultRoute />} />
       </Route>
