@@ -1,9 +1,10 @@
 import { Header } from '@/components/atoms/Header/Header';
-import { UsersList } from '@/components/organisms/UsersList/UsersList';
+import { UsersList } from '@/components/organisms/List/UsersList';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
-import { VehicleList } from '@/components/organisms/VehicleList/VehicleList';
+import { VehicleList } from '@/components/organisms/List/VehicleList';
 
 import styles from './Dashboard.module.scss';
+import { ClientList } from '@/components/organisms/List/ClientList';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
@@ -12,7 +13,7 @@ const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
     case 'vehicles':
       return <VehicleList />;
     case 'clients':
-    // return <ManagerManageTable />;
+      return <ClientList />;
     case 'requests':
     // return <ManagerManageTable />;
     default:

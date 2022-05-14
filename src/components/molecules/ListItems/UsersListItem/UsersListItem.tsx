@@ -2,11 +2,11 @@ import { useModal } from '@/hooks/useModal';
 
 import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
-import { CreateUser } from '@/components/organisms/CreateForms/CreateUser/CreateUser';
 
 import { User } from '@/types/User';
 
 import styles from './UsersListItem.module.scss';
+import { CreateUser } from '@/components/organisms/Create/CreateUser';
 
 type UsersListItemProps = {
   user: User;
