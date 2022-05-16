@@ -11,30 +11,30 @@ export const useGet = <T extends any>({ query, skip }: UseGetArgs) => {
   const [error, setError] = useState<string | null>(null);
 
   const getData = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch(query, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return await response.json();
+    if (skip) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(query, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setData(await response.json());
+    } catch (e) {
+      console.error(e);
+      setError('Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
   }, [query]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        if (skip !== true) setData(await getData());
-      } catch (e) {
-        console.error(e);
-        setError('Something went wrong');
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [query, skip]);
+    getData();
+  }, []);
 
   return {
     data,
