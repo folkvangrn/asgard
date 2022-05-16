@@ -5,7 +5,7 @@ export const getDefaultRoute = (role: UserRole | undefined) => {
     case UserRole.Worker:
       return '/dashboard/activities';
     case UserRole.Manager:
-      return '/dashboard/requests';
+      return '/dashboard/vehicles ';
     case UserRole.Admin:
       return '/dashboard/users';
     default:

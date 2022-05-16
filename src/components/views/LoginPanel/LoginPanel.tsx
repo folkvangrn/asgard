@@ -30,7 +30,8 @@ export function LoginPanel() {
 
   useEffect(() => {
     const defaultRoute = getDefaultRoute(user?.role);
-    if (user?.lastName) navigate(`${defaultRoute}`, { replace: true });
+    if (user?.active) navigate(`${defaultRoute}`, { replace: true });
+    else if (!user?.active === false) alert('Your account was deactivated');
   }, [user]);
 
   return (

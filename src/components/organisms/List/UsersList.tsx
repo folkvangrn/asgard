@@ -1,11 +1,11 @@
 import { useGet } from '@/hooks/useGet';
 import { useModal } from '@/hooks/useModal';
 
-import { CreateUser } from '@/components/organisms/CreateForms/CreateUser/CreateUser';
 import { UsersListItem } from '@/components/molecules/ListItems/UsersListItem/UsersListItem';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 
 import { User } from '@/types/User';
+import { CreateUser } from '../Create/CreateUser';
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -31,7 +31,7 @@ export function UsersList() {
       {error ? (
         <p>{error}</p>
       ) : (
-        users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} />)
+        users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} key={user.id} />)
       )}
     </ListWrapper>
   );

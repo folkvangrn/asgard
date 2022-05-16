@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { GenericCreateForm } from '../GenericCreateForm';
+import { GenericCreateForm } from './GenericCreateForm';
 import { User, UserRole } from '@/types/User';
 
 type CreateUserProps = {
@@ -25,7 +25,7 @@ export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: C
   };
 
   return (
-    <GenericCreateForm
+    <GenericCreateForm<User>
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       initialId={userId}

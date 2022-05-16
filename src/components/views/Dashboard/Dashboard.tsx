@@ -1,19 +1,21 @@
 import { Header } from '@/components/atoms/Header/Header';
-import { UsersList } from '@/components/organisms/UsersList/UsersList';
+import { UsersList } from '@/components/organisms/List/UsersList';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
+import { VehicleList } from '@/components/organisms/List/VehicleList';
+
 import styles from './Dashboard.module.scss';
-import { ManagerManageTable } from '@/components/organisms/ManageTables/ManagerManageTable/ManagerManageTable';
+import { ClientList } from '@/components/organisms/List/ClientList';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
     case 'users':
       return <UsersList />;
     case 'vehicles':
-      return <ManagerManageTable />;
+      return <VehicleList />;
     case 'clients':
-      return <ManagerManageTable />;
+      return <ClientList />;
     case 'requests':
-      return <ManagerManageTable />;
+    // return <ManagerManageTable />;
     default:
       return null;
   }

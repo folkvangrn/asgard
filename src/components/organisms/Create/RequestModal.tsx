@@ -8,7 +8,7 @@ import { TextAreaFieldInput } from '@/components/molecules/TextAraFieldInput/Tex
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
 
-import { Vehicle, VehicleType } from '@/types/Vehicle';
+import { Vehicle } from '@/types/Vehicle';
 
 type RequestFormValues = {
   description: string;
@@ -25,11 +25,9 @@ type UserModalProps = {
 const tempVehicles: Vehicle[] = [
   {
     vin: '12323',
-    type: VehicleType.CityCar,
   },
   {
     vin: '12dssd',
-    type: VehicleType.Bus,
   },
 ];
 

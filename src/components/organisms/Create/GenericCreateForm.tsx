@@ -4,8 +4,7 @@ import { useGet } from '@/hooks/useGet';
 
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
-import { User } from '@/types/User';
-import { Vehicle } from '@/types/Vehicle';
+import { User, Client, Vehicle } from '@/types';
 
 type GenericCreateForm<T> = {
   isOpen: boolean;
@@ -15,7 +14,7 @@ type GenericCreateForm<T> = {
   singularName: string;
   validationSchema: any;
   query: string;
-  initialId?: number;
+  initialId?: number | string;
   refetchData: VoidFunction;
 };
 
@@ -23,7 +22,7 @@ const getHeaderText = (isEditMode: boolean, singularName: string): string => {
   return !isEditMode ? `Add ${singularName}` : `Edit ${singularName}`;
 };
 
-export function GenericCreateForm<T extends User | Vehicle>({
+export function GenericCreateForm<T extends User | Vehicle | Client>({
   isOpen,
   handleCloseModal,
   initialId,
@@ -36,21 +35,20 @@ export function GenericCreateForm<T extends User | Vehicle>({
 }: GenericCreateForm<T>) {
   const headerText = getHeaderText(!!initialId, singularName);
   const [message, setMessage] = useState<string>('');
-
-  const { data: user } = useGet<User>({
+  const { data: givenData } = useGet<T>({
     query,
     skip: initialId ? false : true,
   });
 
-  const helper = () => {
+  const handleAfterCreate = () => {
     refetchData();
     handleCloseModal();
     console.log('dodano git');
   };
 
-  const givenValues: T = initialId ? user : initialFormValues;
+  const givenValues: T = initialId ? givenData : initialFormValues;
 
-  const handleSubmitForm = async (values: T, { resetForm }: { resetForm: VoidFunction }) => {
+  const handleSubmitForm = async (values: T) => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(query, {
@@ -68,8 +66,7 @@ export function GenericCreateForm<T extends User | Vehicle>({
             ? `${singularName} has been added succesfully!`
             : `${singularName} has been edited succesfully!`,
         );
-        !initialId && resetForm();
-        helper();
+        handleAfterCreate();
       } else {
         setMessage(
           !initialId
@@ -78,6 +75,7 @@ export function GenericCreateForm<T extends User | Vehicle>({
         );
       }
     } catch (e) {
+      console.error(e);
       setMessage(
         !initialId
           ? `There was a problem when adding a ${singularName}`
