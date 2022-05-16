@@ -1,25 +1,22 @@
 import { useModal } from '@/hooks/useModal';
 
-import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
-import { CreateUser } from '@/components/organisms/Create/CreateUser';
+import { CreateVehicle } from '@/components/organisms/Create/CreateVehicle';
 import { ListItemElements } from '@/components/atoms/ListItemElements/ListItemElements';
 
-import { User } from '@/types/User';
+import { Vehicle } from '@/types/Vehicle';
 
-import styles from './UsersListItem.module.scss';
-
-type UsersListItemProps = {
-  user: User;
-  refetchUsers: VoidFunction;
+type VehicleListItemProps = {
+  vehicle: Vehicle;
+  refetchVehicles: VoidFunction;
 };
 
-export function UsersListItem({ user, refetchUsers }: UsersListItemProps) {
+export function VehicleListItem({ vehicle, refetchVehicles }: VehicleListItemProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
 
   const componentsArray = [
-    <p className={styles.nameDetails}>{`${user.firstName} ${user.lastName}`}</p>,
-    <Role role={user.role} />,
+    <p>{vehicle.vin}</p>,
+    <p>{vehicle.vehicleClass}</p>,
     <Button text="Edit" onClick={handleOpenModal} />,
   ];
 
@@ -27,11 +24,11 @@ export function UsersListItem({ user, refetchUsers }: UsersListItemProps) {
     <>
       <ListItemElements componentsArray={componentsArray} />
       {isModalOpen ? (
-        <CreateUser
+        <CreateVehicle
           isOpen={isModalOpen}
           handleCloseModal={handleCloseModal}
-          userId={user.id}
-          refetchUsers={refetchUsers}
+          vehicleId={vehicle.vin}
+          refetchVehicles={refetchVehicles}
         />
       ) : null}
     </>

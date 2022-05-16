@@ -25,7 +25,7 @@ export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: C
   };
 
   return (
-    <GenericCreateForm
+    <GenericCreateForm<User>
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       initialId={userId}

@@ -3,8 +3,9 @@ import { useModal } from '@/hooks/useModal';
 
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 import { CreateClient } from '../Create/CreateClient';
+import { ClientListItem } from '@/components/molecules/ListItems/ClientListItem';
 
-import { User } from '@/types/User';
+import { Client } from '@/types/Client';
 
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -14,11 +15,9 @@ export function ClientList() {
     error,
     isLoading,
     refetchData: refetchClients,
-  } = useGet<User[] | undefined>({
+  } = useGet<Client[] | undefined>({
     query: 'http://localhost:8000/api/clients',
   });
-
-  console.log(clients);
 
   return (
     <ListWrapper handleOpenModal={handleOpenModal} singularName="client" isLoading={isLoading}>
@@ -29,7 +28,13 @@ export function ClientList() {
           refetchClients={refetchClients}
         />
       ) : null}
-      {error ? <p>{error}</p> : <p>clients</p>}
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        clients?.map((client) => (
+          <ClientListItem client={client} refetchClients={refetchClients} key={client.id} />
+        ))
+      )}
     </ListWrapper>
   );
 }

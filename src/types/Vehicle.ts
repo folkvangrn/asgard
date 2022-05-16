@@ -1,6 +1,5 @@
-
 export type Vehicle = {
   vin: string;
-  type: string;
+  vehicleClass: string;
   clientId: number;
 };

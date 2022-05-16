@@ -28,7 +28,7 @@ export function CreateClient({
   };
 
   return (
-    <GenericCreateForm
+    <GenericCreateForm<Client>
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       initialId={clientId}

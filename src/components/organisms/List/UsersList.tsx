@@ -31,7 +31,7 @@ export function UsersList() {
       {error ? (
         <p>{error}</p>
       ) : (
-        users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} />)
+        users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} key={user.id} />)
       )}
     </ListWrapper>
   );

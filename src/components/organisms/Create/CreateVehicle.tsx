@@ -11,7 +11,7 @@ import { Client } from '@/types/Client';
 type CreateVehicleProps = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
-  vehicleId?: number | undefined;
+  vehicleId?: string | undefined;
   refetchVehicles: VoidFunction;
 };
 
@@ -33,15 +33,14 @@ export function CreateVehicle({
     query: GET_VEHICLETYPES_QUERY,
   });
 
-  console.log(vehicleTypes);
   const initialValues: Vehicle = {
     vin: '',
-    type: vehicleTypes?.[0] || '',
-    clientId: 0,
+    vehicleClass: vehicleTypes?.[0] || '',
+    clientId: clients?.at(0)?.id || 0,
   };
 
   return (
-    <GenericCreateForm
+    <GenericCreateForm<Vehicle>
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       initialId={vehicleId}
@@ -49,8 +48,8 @@ export function CreateVehicle({
       singularName="Vehicle"
       validationSchema={Yup.object({
         vin: Yup.string().required('Required'),
-        type: Yup.string().required('Required'), // TODO: improve validation
-        client: Yup.string().required('Required'), // TODO: improve validation
+        vehicleClass: Yup.string().required('Required'), // TODO: improve validation
+        clientId: Yup.number(), // TODO: improve validation
       })}
       refetchData={refetchVehicles}
       query={vehicleId ? `${GET_VEHICLES_QUERY}/${vehicleId}` : GET_VEHICLES_QUERY}
@@ -59,7 +58,7 @@ export function CreateVehicle({
       {vehicleTypesError ? (
         <p>{vehicleTypesError}</p>
       ) : (
-        <SelectFieldInput label="Type" name="type" disabled={!!vehicleId}>
+        <SelectFieldInput label="Type" name="vehicleClass" disabled={!!vehicleId}>
           {vehicleTypes?.map((vt) => (
             <option key={vt} value={vt}>
               {vt}
@@ -70,12 +69,12 @@ export function CreateVehicle({
       {clientsError ? (
         <p>{clientsError}</p>
       ) : (
-        <SelectFieldInput label="Client" name="client" isEmpty={clients?.length === 0}>
-          {clients?.map(({ id, firstName, lastName, phoneNumber }) => {
+        <SelectFieldInput label="Client" name="clientId" isEmpty={clients?.length === 0}>
+          {clients?.map(({ id, firstName, lastName, phoneNumber }) => (
             <option key={id} value={id}>
               {`${firstName} ${lastName} ${phoneNumber}`}
-            </option>;
-          })}
+            </option>
+          ))}
         </SelectFieldInput>
       )}
     </GenericCreateForm>

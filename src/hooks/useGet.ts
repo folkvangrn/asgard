@@ -20,20 +20,20 @@ export const useGet = <T extends any>({ query, skip }: UseGetArgs) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    setData(await response.json());
+    return await response.json();
   }, [query]);
 
   useEffect(() => {
-    try {
-      if (skip !== true) {
-        getData();
+    (async () => {
+      try {
+        if (skip !== true) setData(await getData());
+      } catch (e) {
+        console.error(e);
+        setError('Something went wrong');
+      } finally {
+        setIsLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-      setError('Something went wrong');
-    } finally {
-      setIsLoading(false);
-    }
+    })();
   }, [query, skip]);
 
   return {

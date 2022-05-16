@@ -3,6 +3,7 @@ import { useModal } from '@/hooks/useModal';
 
 import { CreateVehicle } from '@/components/organisms/Create/CreateVehicle';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
+import { VehicleListItem } from '@/components/molecules/ListItems/VehicleListItem';
 
 import { Vehicle } from '@/types/Vehicle';
 
@@ -15,7 +16,7 @@ export function VehicleList() {
     isLoading,
     refetchData: refetchVehicles,
   } = useGet<Vehicle[] | undefined>({
-    query: 'shttp://localhost:8000/api/vehicles',
+    query: 'http://localhost:8000/api/vehicles',
   });
 
   return (
@@ -27,12 +28,13 @@ export function VehicleList() {
           refetchVehicles={refetchVehicles}
         />
       ) : null}
-      <p>hi</p>
-      {/* {error ? (
+      {error ? (
         <p>{error}</p>
       ) : (
-        users?.map((user) => <UsersListItem user={user} refetchUsers={refetchData} />)
-      )} */}
+        vehicles?.map((vehicle) => (
+          <VehicleListItem vehicle={vehicle} refetchVehicles={refetchVehicles} key={vehicle.vin} />
+        ))
+      )}
     </ListWrapper>
   );
 }

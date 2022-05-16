@@ -1,37 +1,36 @@
 import { useModal } from '@/hooks/useModal';
 
-import { Role } from '@/components/atoms/Role/Role';
 import { Button } from '@/components/atoms/Button/Button';
-import { CreateUser } from '@/components/organisms/Create/CreateUser';
+import { CreateClient } from '@/components/organisms/Create/CreateClient';
 import { ListItemElements } from '@/components/atoms/ListItemElements/ListItemElements';
 
-import { User } from '@/types/User';
+import { Client } from '@/types/Client';
 
-import styles from './UsersListItem.module.scss';
-
-type UsersListItemProps = {
-  user: User;
-  refetchUsers: VoidFunction;
+type ClientListItemProps = {
+  client: Client;
+  refetchClients: VoidFunction;
 };
 
-export function UsersListItem({ user, refetchUsers }: UsersListItemProps) {
+export function ClientListItem({ client, refetchClients }: ClientListItemProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
 
   const componentsArray = [
-    <p className={styles.nameDetails}>{`${user.firstName} ${user.lastName}`}</p>,
-    <Role role={user.role} />,
+    <p>{`${client.firstName} ${client.lastName}`}</p>,
+    <p>{client.phoneNumber}</p>,
+    <p>{client.email}</p>,
     <Button text="Edit" onClick={handleOpenModal} />,
   ];
 
   return (
     <>
       <ListItemElements componentsArray={componentsArray} />
+
       {isModalOpen ? (
-        <CreateUser
+        <CreateClient
           isOpen={isModalOpen}
           handleCloseModal={handleCloseModal}
-          userId={user.id}
-          refetchUsers={refetchUsers}
+          clientId={client.id}
+          refetchClients={refetchClients}
         />
       ) : null}
     </>

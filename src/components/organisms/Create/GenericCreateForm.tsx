@@ -14,7 +14,7 @@ type GenericCreateForm<T> = {
   singularName: string;
   validationSchema: any;
   query: string;
-  initialId?: number;
+  initialId?: number | string;
   refetchData: VoidFunction;
 };
 
@@ -35,21 +35,20 @@ export function GenericCreateForm<T extends User | Vehicle | Client>({
 }: GenericCreateForm<T>) {
   const headerText = getHeaderText(!!initialId, singularName);
   const [message, setMessage] = useState<string>('');
-
-  const { data: user } = useGet<User>({
+  const { data: givenData } = useGet<T>({
     query,
     skip: initialId ? false : true,
   });
 
-  const helper = () => {
+  const handleAfterCreate = () => {
     refetchData();
     handleCloseModal();
     console.log('dodano git');
   };
 
-  const givenValues: T = initialId ? user : initialFormValues;
+  const givenValues: T = initialId ? givenData : initialFormValues;
 
-  const handleSubmitForm = async (values: T, { resetForm }: { resetForm: VoidFunction }) => {
+  const handleSubmitForm = async (values: T) => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(query, {
@@ -67,8 +66,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client>({
             ? `${singularName} has been added succesfully!`
             : `${singularName} has been edited succesfully!`,
         );
-        !initialId && resetForm();
-        helper();
+        handleAfterCreate();
       } else {
         setMessage(
           !initialId
@@ -77,6 +75,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client>({
         );
       }
     } catch (e) {
+      console.error(e);
       setMessage(
         !initialId
           ? `There was a problem when adding a ${singularName}`
