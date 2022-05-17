@@ -1,6 +1,6 @@
 export type Request = {
   id?: number;
-  vehicleId?: string;
+  vehicleVin?: string;
   description: string;
   result?: string;
   status?: RequestStatus;
@@ -9,8 +9,8 @@ export type Request = {
   dateFinalized?: string;
 };
 
-enum RequestStatus {
-  Opened = 'OPEN',
+export enum RequestStatus {
+  Open = 'OPEN',
   Canceled = 'CANCELED',
   InProgress = 'IN_PROGRESS',
   Finish = 'FINISH',
