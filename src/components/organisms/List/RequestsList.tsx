@@ -5,9 +5,9 @@ import { useAuth } from '@/hooks/useAuth';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 import { CreateRequest } from '../Create/CreateRequest';
 import { RequestListFilter } from '@/components/molecules/RequestListFilter/RequestListFilter';
+import { RequestListItem } from '@/components/molecules/ListItems/RequestListItem';
 
 import { Request, RequestStatus } from '@/types';
-import { RequestListItem } from '@/components/molecules/ListItems/RequestListItem';
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
