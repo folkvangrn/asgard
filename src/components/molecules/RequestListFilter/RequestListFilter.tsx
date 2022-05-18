@@ -41,7 +41,11 @@ export const RequestListFilter = ({ refetchRequests, managerId }: RequestListFil
         {error ? (
           <p>There was a problem with fetching managers</p>
         ) : (
-          <SelectFieldInput label="Choose manager" name="manager" isEmpty={managers?.length === 0}>
+          <SelectFieldInput
+            label="Choose manager"
+            name="managerId"
+            isEmpty={managers?.length === 0}
+          >
             {managers &&
               managers?.map(({ id, firstName, lastName }) => (
                 <option value={id} key={id}>

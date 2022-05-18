@@ -7,6 +7,7 @@ import { CreateRequest } from '../Create/CreateRequest';
 import { RequestListFilter } from '@/components/molecules/RequestListFilter/RequestListFilter';
 
 import { Request, RequestStatus } from '@/types';
+import { RequestListItem } from '@/components/molecules/ListItems/RequestListItem';
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -17,7 +18,7 @@ export function RequestsList() {
     error,
     isLoading,
     refetchData: refetchRequests,
-  } = useGet<Request | undefined>({
+  } = useGet<Request[] | undefined>({
     query: `http://localhost:8000/api/requests?managerid=${user.id}&status=${RequestStatus.Open}`,
   });
 
@@ -35,7 +36,11 @@ export function RequestsList() {
           refetchRequests={refetchRequests}
         />
       ) : null}
-      <p>requests</p>
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        requests?.map((request) => <RequestListItem request={request} key={request.id} />)
+      )}
     </ListWrapper>
   );
 }
