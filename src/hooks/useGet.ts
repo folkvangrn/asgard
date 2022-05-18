@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 type UseGetArgs = {
   query: string;
@@ -10,31 +11,36 @@ export const useGet = <T extends any>({ query, skip }: UseGetArgs) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getData = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch(query, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return await response.json();
-  }, [query]);
+  const getData = useCallback(async (refetchQuery?: string) => {
+    if (skip) return;
+    const GET_QUERY = refetchQuery || query;
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(GET_QUERY, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.data;
+      if (!data?.status) {
+        setData(data);
+      } else {
+        setError('Something went wrong');
+      }
+    } catch (e) {
+      console.error(e);
+      setError('Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    (async () => {
-      try {
-        if (skip !== true) setData(await getData());
-      } catch (e) {
-        console.error(e);
-        setError('Something went wrong');
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [query, skip]);
+    getData();
+  }, []);
 
   return {
     data,

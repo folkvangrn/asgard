@@ -32,10 +32,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (!storedUser) return;
-    const parsedUser = JSON.parse(storedUser!);
-    setUser(parsedUser);
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (!storedUser) return;
+      const parsedUser = JSON.parse(storedUser!);
+      setUser(parsedUser);
+    } catch (e) {}
   }, []);
 
   const signIn = async (username: string, password: string) => {

@@ -3,8 +3,9 @@ import { UsersList } from '@/components/organisms/List/UsersList';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
 import { VehicleList } from '@/components/organisms/List/VehicleList';
 
-import styles from './Dashboard.module.scss';
 import { ClientList } from '@/components/organisms/List/ClientList';
+import { RequestsList } from '@/components/organisms/List/RequestsList';
+import styles from './Dashboard.module.scss';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
@@ -15,7 +16,7 @@ const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
     case 'clients':
       return <ClientList />;
     case 'requests':
-    // return <ManagerManageTable />;
+      return <RequestsList />;
     default:
       return null;
   }
