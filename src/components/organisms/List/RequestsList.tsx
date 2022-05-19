@@ -19,7 +19,7 @@ export function RequestsList() {
     isLoading,
     refetchData: refetchRequests,
   } = useGet<Request[] | undefined>({
-    query: `http://localhost:8000/api/requests?managerid=${user.id}&status=${RequestStatus.Open}`,
+    query: `http://localhost:8000/api/requests?managerid=${user?.id}&status=${RequestStatus.Open}`,
   });
 
   return (
@@ -27,7 +27,7 @@ export function RequestsList() {
       handleOpenModal={handleOpenModal}
       singularName="request"
       isLoading={isLoading}
-      ListFilter={<RequestListFilter refetchRequests={refetchRequests} managerId={user.id} />}
+      ListFilter={<RequestListFilter refetchRequests={refetchRequests} managerId={user?.id} />}
     >
       {isModalOpen ? (
         <CreateRequest

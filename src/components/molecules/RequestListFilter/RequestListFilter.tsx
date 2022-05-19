@@ -13,14 +13,14 @@ type ListFilterType = {
 
 type RequestListFilterProps = {
   refetchRequests: (query?: string) => void;
-  managerId: number;
+  managerId: number | undefined;
 };
 
 export const RequestListFilter = ({ refetchRequests, managerId }: RequestListFilterProps) => {
   const requestStatuses = Object.values(RequestStatus);
   const initialValues: ListFilterType = {
     status: RequestStatus.Open,
-    managerId,
+    managerId: managerId || 0,
   };
 
   const handleRefetchRequests = (values: ListFilterType) => {
