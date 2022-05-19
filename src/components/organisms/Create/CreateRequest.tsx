@@ -12,7 +12,7 @@ import { Vehicle, Request } from '@/types';
 type CreateRequestProps = {
   isOpen: boolean;
   handleCloseModal: VoidFunction;
-  requestId?: string | undefined;
+  requestId?: number | undefined;
   refetchRequests: VoidFunction;
 };
 
@@ -66,7 +66,7 @@ export function CreateRequest({
       {vehiclesError ? (
         <p>{vehiclesError}</p>
       ) : (
-        <SelectFieldInput label="Client" name="clientId" isEmpty={vehicles?.length === 0}>
+        <SelectFieldInput label="Vehicle" name="vehicleVin" isEmpty={vehicles?.length === 0}>
           {vehicles?.map(({ vin, vehicleClass }) => (
             <option key={vin} value={vin}>
               {`${vin} ${vehicleClass}`}

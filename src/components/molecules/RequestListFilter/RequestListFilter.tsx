@@ -4,10 +4,10 @@ import { useGet } from '@/hooks/useGet';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
 
-import { RequestStatus, User } from '@/types';
+import { Status, User } from '@/types';
 
 type ListFilterType = {
-  status: RequestStatus;
+  status: Status;
   managerId: number;
 };
 
@@ -17,9 +17,9 @@ type RequestListFilterProps = {
 };
 
 export const RequestListFilter = ({ refetchRequests, managerId }: RequestListFilterProps) => {
-  const requestStatuses = Object.values(RequestStatus);
+  const requestStatuses = Object.values(Status);
   const initialValues: ListFilterType = {
-    status: RequestStatus.Open,
+    status: Status.Open,
     managerId: managerId || 0,
   };
 

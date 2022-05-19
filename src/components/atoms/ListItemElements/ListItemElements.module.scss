@@ -14,3 +14,7 @@
     @include mixins.flexCenter;
   }
 }
+
+.hasDetailsView {
+  cursor: pointer;
+}

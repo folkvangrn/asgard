@@ -5,9 +5,9 @@ import { UsersList } from '@/components/organisms/List/UsersList';
 import { VehicleList } from '@/components/organisms/List/VehicleList';
 import { ClientList } from '@/components/organisms/List/ClientList';
 import { RequestsList } from '@/components/organisms/List/RequestsList';
+import { RequestDetails } from '@/components/organisms/Details/RequestDetails/RequestsDetails';
 
 import styles from './Dashboard.module.scss';
-import { RequestDetails } from '@/components/organisms/Details/RequestDetails/RequestsDetails';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
