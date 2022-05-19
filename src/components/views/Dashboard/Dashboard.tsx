@@ -6,9 +6,8 @@ import { VehicleList } from '@/components/organisms/List/VehicleList';
 import { ClientList } from '@/components/organisms/List/ClientList';
 import { RequestsList } from '@/components/organisms/List/RequestsList';
 
-import { RequestsDetails } from '@/components/organisms/Details/RequestsDetails';
-
 import styles from './Dashboard.module.scss';
+import { RequestDetails } from '@/components/organisms/Details/RequestDetails/RequestsDetails';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
@@ -21,7 +20,7 @@ const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
     case 'requests':
       return <RequestsList />;
     case 'requestDetails':
-      return <RequestsDetails />;
+      return <RequestDetails />;
     default:
       return null;
   }

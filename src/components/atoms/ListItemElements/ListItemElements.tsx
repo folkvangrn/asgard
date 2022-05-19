@@ -3,7 +3,7 @@ import styles from './ListItemElements.module.scss';
 
 type ListItemElementsProps = {
   componentsArray: ReactNode[];
-  navigateToDetails: VoidFunction;
+  navigateToDetails?: VoidFunction;
 };
 
 export function ListItemElements({ componentsArray, navigateToDetails }: ListItemElementsProps) {
