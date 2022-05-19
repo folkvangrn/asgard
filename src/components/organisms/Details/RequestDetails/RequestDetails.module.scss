@@ -1,0 +1,49 @@
+@use '@/styles/mixins';
+
+.detailsWrapper {
+  background-color: var(--lightGrey);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 95%;
+  padding: 20px;
+  height: 25%;
+  background-color: var(--white);
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+
+  .headerTitle {
+    color: var(--blue);
+    font-size: 20px;
+  }
+}
+
+.childWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+.editButton {
+  font-size: 18px;
+}
+
+.headerInfo {
+  display: flex;
+  flex-wrap: wrap;
+  height: 80%;
+
+  .headerChild {
+    @include mixins.flexCenter;
+    height: 50%;
+    width: 15%;
+    padding: 10px;
+  }
+}

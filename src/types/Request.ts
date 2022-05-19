@@ -1,17 +1,20 @@
+import { Status } from './Status';
 export type Request = {
   id?: number;
-  vehicleVin?: string;
   description: string;
   result?: string;
-  status?: RequestStatus;
-  managerId?: number;
+  status?: Status;
   dateRequest?: string;
   dateFinalized?: string;
+  managerId?: number;
+  managerFirstName?: string;
+  managerLastName?: string;
+  vehicleVin?: string;
+  vehicleClass?: string;
+  vehicleClientId?: number;
+  vehicleClientFirstName?: string;
+  vehicleClientLastName?: string;
+  vehicleClientEmail?: string;
+  vehicleClientCompanyName?: string;
+  vehicleClientPhoneNumber?: string;
 };
-
-export enum RequestStatus {
-  Open = 'OPEN',
-  Canceled = 'CANCELED',
-  InProgress = 'IN_PROGRESS',
-  Finish = 'FINISH',
-}

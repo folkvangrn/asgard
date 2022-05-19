@@ -4,23 +4,23 @@ import { useGet } from '@/hooks/useGet';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
 
-import { RequestStatus, User } from '@/types';
+import { Status, User } from '@/types';
 
 type ListFilterType = {
-  status: RequestStatus;
+  status: Status;
   managerId: number;
 };
 
 type RequestListFilterProps = {
   refetchRequests: (query?: string) => void;
-  managerId: number;
+  managerId: number | undefined;
 };
 
 export const RequestListFilter = ({ refetchRequests, managerId }: RequestListFilterProps) => {
-  const requestStatuses = Object.values(RequestStatus);
+  const requestStatuses = Object.values(Status);
   const initialValues: ListFilterType = {
-    status: RequestStatus.Open,
-    managerId,
+    status: Status.Open,
+    managerId: managerId || 0,
   };
 
   const handleRefetchRequests = (values: ListFilterType) => {

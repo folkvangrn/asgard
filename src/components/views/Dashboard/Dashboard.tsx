@@ -1,10 +1,12 @@
 import { Header } from '@/components/atoms/Header/Header';
-import { UsersList } from '@/components/organisms/List/UsersList';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
-import { VehicleList } from '@/components/organisms/List/VehicleList';
 
+import { UsersList } from '@/components/organisms/List/UsersList';
+import { VehicleList } from '@/components/organisms/List/VehicleList';
 import { ClientList } from '@/components/organisms/List/ClientList';
 import { RequestsList } from '@/components/organisms/List/RequestsList';
+import { RequestDetails } from '@/components/organisms/Details/RequestDetails/RequestsDetails';
+
 import styles from './Dashboard.module.scss';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
@@ -17,6 +19,8 @@ const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
       return <ClientList />;
     case 'requests':
       return <RequestsList />;
+    case 'requestDetails':
+      return <RequestDetails />;
     default:
       return null;
   }

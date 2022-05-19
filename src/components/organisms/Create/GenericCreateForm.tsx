@@ -46,7 +46,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request>({
     console.log('dodano git');
   };
 
-  const givenValues: T = initialId ? givenData : initialFormValues;
+  const givenValues: T = initialId ? givenData! : initialFormValues;
 
   const handleSubmitForm = async (values: T) => {
     try {
