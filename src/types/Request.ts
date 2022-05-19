@@ -7,7 +7,8 @@ export type Request = {
   dateRequest?: string;
   dateFinalized?: string;
   managerId?: number;
-  managerUsername?: string;
+  managerFirstName?: string;
+  managerLastName?: string;
   vehicleVin?: string;
   vehicleClass?: string;
   vehicleClientId?: number;

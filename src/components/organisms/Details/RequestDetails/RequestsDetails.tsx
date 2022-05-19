@@ -36,7 +36,7 @@ const RequestHeader = ({ error, request, refetchRequest }: RequestHeaderProps) =
     },
     {
       title: 'Menager info:',
-      value: `TODO`,
+      value: `${request?.managerFirstName} ${request?.managerLastName}`,
     },
     {
       title: 'Vehicle VIN:',
@@ -113,7 +113,6 @@ export function RequestDetails() {
       ) : (
         <>
           <RequestHeader error={error} request={request} refetchRequest={refetchRequest} />
-          
         </>
       )}
     </main>
