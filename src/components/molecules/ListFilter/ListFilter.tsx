@@ -3,51 +3,55 @@ import { useGet } from '@/hooks/useGet';
 
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
+import { pluralizeRole } from '@/helpers/grammar';
 
 import { Status, User } from '@/types';
+import { useAuth } from '@/hooks/useAuth';
 
 type ListFilterType = {
   status: Status;
-  managerId: number;
+  userId: number;
 };
 
-type RequestListFilterProps = {
-  refetchRequests: (query?: string) => void;
-  managerId: number | undefined;
+type ListFilterProps = {
+  refetchData: (query?: string) => void;
 };
 
-export const RequestListFilter = ({ refetchRequests, managerId }: RequestListFilterProps) => {
+export const ListFilter = ({ refetchData }: ListFilterProps) => {
+  const { user } = useAuth();
+  const pluralizedSingularName = pluralizeRole(user?.role!);
   const requestStatuses = Object.values(Status);
+
   const initialValues: ListFilterType = {
     status: Status.Open,
-    managerId: managerId || 0,
+    userId: user?.id || 0,
   };
 
-  const handleRefetchRequests = (values: ListFilterType) => {
-    const { managerId, status } = values;
-    refetchRequests(`http://localhost:8000/api/requests?managerid=${managerId}&status=${status}`);
+  const handleRefetchData = (values: ListFilterType) => {
+    const { userId, status } = values;
+    refetchData(`http://localhost:8000/api/requests?managerid=${userId}&status=${status}`);
   };
 
   const {
-    data: managers = [],
+    data: users = [],
     error,
     isLoading,
-  } = useGet<User[]>({ query: 'http://localhost:8000/api/users/managers' });
+  } = useGet<User[]>({ query: `http://localhost:8000/api/users/${pluralizedSingularName}` });
 
   return (
-    <Formik onSubmit={handleRefetchRequests} initialValues={initialValues}>
+    <Formik onSubmit={handleRefetchData} initialValues={initialValues}>
       <Form>
-        {isLoading && <p>Loading managers...</p>}
+        {isLoading && <p>Loading {pluralizedSingularName}...</p>}
         {error ? (
-          <p>There was a problem with fetching managers</p>
+          <p>There was a problem with fetching {pluralizedSingularName}</p>
         ) : (
           <SelectFieldInput
-            label="Choose manager"
-            name="managerId"
-            isEmpty={managers?.length === 0}
+            label={`Choose ${user?.role}`}
+            name="userId"
+            isEmpty={users?.length === 0}
           >
-            {managers &&
-              managers?.map(({ id, firstName, lastName }) => (
+            {users &&
+              users?.map(({ id, firstName, lastName }) => (
                 <option value={id} key={id}>
                   {`${firstName} ${lastName}`}
                 </option>
