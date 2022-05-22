@@ -1,11 +1,10 @@
-import { useGet } from '@/hooks/useGet';
-import { useModal } from '@/hooks/useModal';
+import { useGet, useModal } from '@/hooks';
 
 import { UsersListItem } from '@/components/molecules/ListItems/UsersListItem/UsersListItem';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
+import { CreateUser } from '../Create/CreateUser';
 
 import { User } from '@/types/User';
-import { CreateUser } from '../Create/CreateUser';
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);

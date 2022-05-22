@@ -2,9 +2,9 @@ import { useModal } from '@/hooks/useModal';
 
 import { Button } from '@/components/atoms/Button/Button';
 import { ListItemElements } from '@/components/atoms/ListItemElements/ListItemElements';
+import { CreateActivity } from '@/components/organisms/Create/CreateActivity';
 
 import { Activity } from '@/types';
-import { CreateActivity } from '@/components/organisms/Create/CreateActivity';
 
 type ActivityListItemProps = {
   activity: Activity;

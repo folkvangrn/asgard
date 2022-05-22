@@ -1,6 +1,7 @@
-import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
-import { Form } from 'formik';
 import { ReactNode } from 'react';
+import { Form } from 'formik';
+import { FormButtons } from '@/components/molecules/FormButtons/FormButtons';
+
 import styles from './FormWrapper.module.scss';
 
 type FormWrapperProps = {

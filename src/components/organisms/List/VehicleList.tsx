@@ -1,5 +1,4 @@
-import { useGet } from '@/hooks/useGet';
-import { useModal } from '@/hooks/useModal';
+import { useGet, useModal } from '@/hooks';
 
 import { CreateVehicle } from '@/components/organisms/Create/CreateVehicle';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';

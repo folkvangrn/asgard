@@ -1,5 +1,6 @@
 import { useField } from 'formik';
 import { SelectHTMLAttributes } from 'react';
+
 import styles from './SelectFieldInput.module.scss';
 
 type SelectFieldInputProps = {
