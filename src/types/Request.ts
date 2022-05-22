@@ -5,7 +5,7 @@ export type Request = {
   result?: string;
   status?: Status;
   dateRequest?: string;
-  dateFinalized?: string;
+  dateClosed?: string;
   managerId?: number;
   managerFirstName?: string;
   managerLastName?: string;

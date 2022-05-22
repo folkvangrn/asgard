@@ -48,8 +48,8 @@ export const RequestHeader = ({ error, request, refetchRequest }: RequestHeaderP
       value: request?.dateRequest,
     },
     {
-      title: 'Date finalized:',
-      value: request?.dateFinalized,
+      title: 'Date Closed:',
+      value: request?.dateClosed,
     },
     {
       title: 'Status:',
