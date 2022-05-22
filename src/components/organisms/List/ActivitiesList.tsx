@@ -1,21 +1,20 @@
-import { useGet } from '@/hooks/useGet';
-import { useModal } from '@/hooks/useModal';
+import { useGet, useModal, useAuth } from '@/hooks';
 
-import { useAuth } from '@/hooks/useAuth';
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
-
-import { Activity, Status } from '@/types';
 import { CreateActivity } from '../Create/CreateActivity';
 import { ActivityListItem } from '@/components/molecules/ListItems/ActivityListItem';
+import { ListFilter } from '@/components/molecules/ListFilter/ListFilter';
+
+import { Activity, Status } from '@/types';
 
 type ActivitiesListProps = {
-  // isManagerLogged?: boolean;
   requestId?: number;
 };
 
 export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const { user } = useAuth();
+
   const GET_ACTIVITIES_QUERY = requestId
     ? `http://localhost:8000/api/requests/${requestId}/activities`
     : `http://localhost:8000/api/activities?workerid=${user?.id}&status=${Status.Open}`;
@@ -30,7 +29,12 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
   });
 
   return (
-    <ListWrapper isLoading={isLoading} handleOpenModal={handleOpenModal} singularName="activity">
+    <ListWrapper
+      isLoading={isLoading}
+      handleOpenModal={handleOpenModal}
+      singularName="activity"
+      ListFilter={!requestId && <ListFilter refetchData={refetchActivities} />}
+    >
       {isModalOpen ? (
         <CreateActivity
           requestId={requestId!}
@@ -42,7 +46,7 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
       {error ? (
         <p>{error}</p>
       ) : (
-        activities?.map((activity) => (
+        (activities || []).map((activity) => (
           <ActivityListItem
             activity={activity}
             refetchActivities={refetchActivities}

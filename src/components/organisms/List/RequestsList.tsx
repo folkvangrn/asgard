@@ -1,18 +1,16 @@
-import { useGet } from '@/hooks/useGet';
-import { useModal } from '@/hooks/useModal';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth, useGet, useModal } from '@/hooks';
 
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 import { CreateRequest } from '../Create/CreateRequest';
-import { RequestListFilter } from '@/components/molecules/RequestListFilter/RequestListFilter';
+import { ListFilter } from '@/components/molecules/ListFilter/ListFilter';
 import { RequestListItem } from '@/components/molecules/ListItems/RequestListItem';
 
 import { Request, Status } from '@/types';
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
-
   const { user } = useAuth();
+
   const {
     data: requests,
     error,
@@ -27,7 +25,7 @@ export function RequestsList() {
       handleOpenModal={handleOpenModal}
       singularName="request"
       isLoading={isLoading}
-      ListFilter={<RequestListFilter refetchRequests={refetchRequests} managerId={user?.id} />}
+      ListFilter={<ListFilter refetchData={refetchRequests} />}
     >
       {isModalOpen ? (
         <CreateRequest
