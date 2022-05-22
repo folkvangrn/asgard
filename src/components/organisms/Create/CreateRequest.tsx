@@ -66,7 +66,12 @@ export function CreateRequest({
       {vehiclesError ? (
         <p>{vehiclesError}</p>
       ) : (
-        <SelectFieldInput label="Vehicle" name="vehicleVin" isEmpty={vehicles?.length === 0}>
+        <SelectFieldInput
+          label="Vehicle"
+          name="vehicleVin"
+          isEmpty={vehicles?.length === 0}
+          disabled={!!requestId}
+        >
           {vehicles?.map(({ vin, vehicleClass }) => (
             <option key={vin} value={vin}>
               {`${vin} ${vehicleClass}`}

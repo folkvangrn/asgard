@@ -3,7 +3,7 @@ import { useAuth, useGet } from '@/hooks';
 
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
-import { addIdToRole, pluralizeRole } from '@/helpers/others';
+import { addIdToRole, pluralize } from '@/helpers/others';
 
 import { Status, User, UserRole } from '@/types';
 
@@ -18,7 +18,7 @@ type ListFilterProps = {
 
 export const ListFilter = ({ refetchData }: ListFilterProps) => {
   const { user } = useAuth();
-  const pluralizedSingularName = pluralizeRole(user?.role!);
+  const pluralizedSingularName = pluralize(user?.role!);
   const requestStatuses = Object.values(Status);
 
   const initialValues: ListFilterType = {

@@ -3,10 +3,10 @@ import { useGet } from '@/hooks/useGet';
 
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
+import { TextAreaFieldInput } from '@/components/molecules/TextAraFieldInput/TextAraFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
 
 import { Activity, ActivityDictionaryElement, Status, User } from '@/types';
-import { TextAreaFieldInput } from '@/components/molecules/TextAraFieldInput/TextAraFieldInput';
 
 type CreateActivityProps = {
   isOpen: boolean;
@@ -28,6 +28,7 @@ export function CreateActivity({
   requestId,
 }: CreateActivityProps) {
   const { data: workers, error: workersError } = useGet<User[]>({ query: GET_WORKERS_QUERY });
+
   const { data: activityDictionary, error: activityDictionaryError } = useGet<
     ActivityDictionaryElement[]
   >({ query: GET_ACTIVITY_DICTIONARY });
@@ -59,7 +60,13 @@ export function CreateActivity({
       refetchData={refetchActivities}
       query={activityId ? `${GET_ACTIVITIES_QUERY}/${activityId}` : GET_ACTIVITIES_QUERY}
     >
-      <TextFieldInput label="Sequence number" name="sequenceNumber" type="number" min={1} />
+      <TextFieldInput
+        label="Sequence number"
+        name="sequenceNumber"
+        type="number"
+        min={1}
+        disabled={!!activityId}
+      />
       <TextAreaFieldInput label="Description" name="description" />
       <TextAreaFieldInput label="Result" name="result" />
       {workersError ? (
