@@ -1,12 +1,11 @@
 import { Form, Formik } from 'formik';
-import { useGet } from '@/hooks/useGet';
+import { useAuth, useGet } from '@/hooks';
 
 import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
-import { pluralizeRole } from '@/helpers/grammar';
+import { addIdToRole, pluralizeRole } from '@/helpers/others';
 
-import { Status, User } from '@/types';
-import { useAuth } from '@/hooks/useAuth';
+import { Status, User, UserRole } from '@/types';
 
 type ListFilterType = {
   status: Status;
@@ -29,7 +28,11 @@ export const ListFilter = ({ refetchData }: ListFilterProps) => {
 
   const handleRefetchData = (values: ListFilterType) => {
     const { userId, status } = values;
-    refetchData(`http://localhost:8000/api/requests?managerid=${userId}&status=${status}`);
+    const dataType = user?.role === UserRole.Manager ? 'requests' : 'activities';
+
+    refetchData(
+      `http://localhost:8000/api/${dataType}?${addIdToRole(user?.role)}=${userId}&status=${status}`,
+    );
   };
 
   const {

@@ -33,7 +33,7 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
       isLoading={isLoading}
       handleOpenModal={handleOpenModal}
       singularName="activity"
-      ListFilter={!requestId ?? <ListFilter refetchData={refetchActivities} />}
+      ListFilter={!requestId && <ListFilter refetchData={refetchActivities} />}
     >
       {isModalOpen ? (
         <CreateActivity
@@ -46,7 +46,7 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
       {error ? (
         <p>{error}</p>
       ) : (
-        activities?.map((activity) => (
+        (activities || []).map((activity) => (
           <ActivityListItem
             activity={activity}
             refetchActivities={refetchActivities}
