@@ -1,7 +1,8 @@
 import { useAuth } from '@/hooks/useAuth';
-import { UserRole } from '@/types/User';
 import { Link, useNavigate } from 'react-router-dom';
+
 import styles from './Navigation.module.scss';
+import { UserRole } from '@/types/User';
 
 type NavbarItemProps = {
   path: string;

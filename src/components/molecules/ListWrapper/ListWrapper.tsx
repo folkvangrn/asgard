@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+
 import { Button } from '@/components/atoms/Button/Button';
+
 import styles from './ListWrapper.module.scss';
 
 type ListWrapperProps = {

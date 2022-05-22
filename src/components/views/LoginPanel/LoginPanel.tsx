@@ -1,12 +1,12 @@
+import * as Yup from 'yup';
 import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 
 import { Button } from '@/components/atoms/Button/Button';
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
+import { TextFieldInput } from '@/components/atoms/Inputs';
 import { getDefaultRoute } from '@/helpers/navigation';
-import * as Yup from 'yup';
 
 import styles from './LoginPanel.module.scss';
 

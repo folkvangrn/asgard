@@ -1,4 +1,5 @@
 import ReactModal from 'react-modal';
+
 import styles from './Modal.module.scss';
 
 type ModalProps = {

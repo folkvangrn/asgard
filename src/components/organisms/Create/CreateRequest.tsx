@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
-import { useGet } from '@/hooks/useGet';
-import { useAuth } from '@/hooks/useAuth';
+import { useGet, useAuth } from '@/hooks/';
 
 import { GenericCreateForm } from './GenericCreateForm';
 import { SelectFieldInput, TextAreaFieldInput, TextFieldInput } from '@/components/atoms/Inputs';

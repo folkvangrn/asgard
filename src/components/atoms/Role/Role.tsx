@@ -1,4 +1,5 @@
 import { UserRole } from '@/types/User';
+
 import styles from './Role.module.scss';
 
 type RoleProps = {
