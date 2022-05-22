@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
+import { SelectFieldInput } from '@/components/atoms/Inputs/SelectFieldInput/SelectFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
 import { User, UserRole } from '@/types/User';
 

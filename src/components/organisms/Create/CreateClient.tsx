@@ -1,7 +1,8 @@
 import * as Yup from 'yup';
 
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
+import { TextFieldInput } from '@/components/atoms/Inputs';
+
 import { Client } from '@/types/Client';
 
 type CreateClientProps = {

@@ -3,9 +3,7 @@ import { useGet } from '@/hooks/useGet';
 import { useAuth } from '@/hooks/useAuth';
 
 import { GenericCreateForm } from './GenericCreateForm';
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { TextAreaFieldInput } from '@/components/molecules/TextAraFieldInput/TextAraFieldInput';
+import { SelectFieldInput, TextAreaFieldInput, TextFieldInput } from '@/components/atoms/Inputs';
 
 import { Vehicle, Request } from '@/types';
 

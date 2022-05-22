@@ -1,12 +1,10 @@
 import * as Yup from 'yup';
 import { useGet } from '@/hooks/useGet';
 
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
+import { SelectFieldInput, TextFieldInput } from '@/components/atoms/Inputs';
 
-import { Vehicle } from '@/types/Vehicle';
-import { Client } from '@/types/Client';
+import { Vehicle, Client } from '@/types';
 
 type CreateVehicleProps = {
   isOpen: boolean;
