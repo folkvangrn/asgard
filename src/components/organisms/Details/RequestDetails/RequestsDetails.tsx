@@ -1,101 +1,11 @@
 import { useGet } from '@/hooks/useGet';
 import { useParams } from 'react-router-dom';
 
-import { Request } from '@/types';
+import { RequestHeader } from './RequesHeader/RequestHeader';
+import { ActivitiesList } from '@/components/organisms/List/ActivitiesList';
 
 import styles from './RequestDetails.module.scss';
-import { Button } from '@/components/atoms/Button/Button';
-import { CreateRequest } from '../../Create/CreateRequest';
-import { useModal } from '@/hooks/useModal';
-
-type RequestHeaderProps = {
-  error: string | null;
-  request: Request | null;
-  refetchRequest: VoidFunction;
-};
-
-const RequestHeader = ({ error, request, refetchRequest }: RequestHeaderProps) => {
-  const { isModalOpen, handleOpenModal, handleCloseModal } = useModal(false);
-
-  const headerChilds = [
-    {
-      title: 'Child info:',
-      value: `${request?.vehicleClientFirstName} ${request?.vehicleClientLastName}`,
-    },
-    {
-      title: 'Client phone number:',
-      value: request?.vehicleClientPhoneNumber,
-    },
-    {
-      title: 'Client e-mail:',
-      value: request?.vehicleClientEmail,
-    },
-    {
-      title: "Client's company:",
-      value: request?.vehicleClientCompanyName,
-    },
-    {
-      title: 'Menager info:',
-      value: `${request?.managerFirstName} ${request?.managerLastName}`,
-    },
-    {
-      title: 'Vehicle VIN:',
-      value: request?.vehicleVin,
-    },
-    {
-      title: 'Vehicle type:',
-      value: request?.vehicleClass,
-    },
-    {
-      title: 'Date request:',
-      value: request?.dateRequest,
-    },
-    {
-      title: 'Date finalized:',
-      value: request?.dateFinalized,
-    },
-    {
-      title: 'Status:',
-      value: request?.status,
-    },
-    {
-      title: 'Description:',
-      value: request?.description,
-    },
-    {
-      title: 'Result:',
-      value: request?.result,
-    },
-  ];
-
-  return error ? (
-    <p>There was a problem when fetching request</p>
-  ) : (
-    <header className={styles.headerSection}>
-      <div className={styles.childWrapper}>
-        <h3 className={styles.headerTitle}>Request details</h3>
-        <>
-          <Button text="Edit request" className={styles.editButton} onClick={handleOpenModal} />
-          <CreateRequest
-            isOpen={isModalOpen}
-            handleCloseModal={handleCloseModal}
-            requestId={request?.id}
-            refetchRequests={refetchRequest}
-          />
-        </>
-      </div>
-      <div className={styles.headerInfo}>
-        {headerChilds.map(({ title, value }) => (
-          <div className={styles.headerChild}>
-            <p>
-              {title} <span>{value || '-'}</span>
-            </p>
-          </div>
-        ))}
-      </div>
-    </header>
-  );
-};
+import { Request } from '@/types';
 
 export function RequestDetails() {
   const { requestId } = useParams();
@@ -113,6 +23,7 @@ export function RequestDetails() {
       ) : (
         <>
           <RequestHeader error={error} request={request} refetchRequest={refetchRequest} />
+          <ActivitiesList requestId={request?.id} />
         </>
       )}
     </main>
