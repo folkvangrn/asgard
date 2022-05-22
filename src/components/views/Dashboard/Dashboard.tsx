@@ -5,6 +5,7 @@ import { UsersList } from '@/components/organisms/List/UsersList';
 import { VehicleList } from '@/components/organisms/List/VehicleList';
 import { ClientList } from '@/components/organisms/List/ClientList';
 import { RequestsList } from '@/components/organisms/List/RequestsList';
+import { ActivitiesList } from '@/components/organisms/List/ActivitiesList';
 import { RequestDetails } from '@/components/organisms/Details/RequestDetails/RequestsDetails';
 
 import styles from './Dashboard.module.scss';
@@ -21,6 +22,8 @@ const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
       return <RequestsList />;
     case 'requestDetails':
       return <RequestDetails />;
+    case 'activities':
+      return <ActivitiesList />;
     default:
       return null;
   }

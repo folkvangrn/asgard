@@ -3,12 +3,13 @@
   justify-content: center;
   align-items: start;
   background-color: var(--lightGrey);
+  width: 100%;
 }
 
 .table {
   height: 75vh;
-  width: 85%;
-  border-radius: 15px;
+  width: 95%;
+  border-radius: 5px;
 }
 
 .tableHeader {
@@ -17,8 +18,8 @@
   align-items: center;
   height: 15%;
   background-color: var(--blue);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
   input {
     padding: 10px 0 10px 15px;
@@ -47,6 +48,6 @@
   overflow-y: auto;
   background-color: var(--white);
   border: 2px solid var(--blue);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

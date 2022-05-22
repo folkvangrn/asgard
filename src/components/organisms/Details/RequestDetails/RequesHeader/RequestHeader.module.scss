@@ -1,16 +1,5 @@
 @use '@/styles/mixins';
 
-.detailsWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 20px;
-  overflow-y: auto;
-  background-color: var(--lightGrey);
-}
-
 .headerSection {
   display: flex;
   justify-content: start;
