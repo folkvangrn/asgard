@@ -1,10 +1,8 @@
 import * as Yup from 'yup';
 import { useGet } from '@/hooks/useGet';
 
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
-import { TextAreaFieldInput } from '@/components/molecules/TextAraFieldInput/TextAraFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
+import { SelectFieldInput, TextAreaFieldInput, TextFieldInput } from '@/components/atoms/Inputs';
 
 import { Activity, ActivityDictionaryElement, Status, User } from '@/types';
 

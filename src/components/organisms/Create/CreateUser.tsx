@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-import { TextFieldInput } from '@/components/molecules/TextFieldInput/TextFieldInput';
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
 import { GenericCreateForm } from './GenericCreateForm';
+import { SelectFieldInput, TextFieldInput } from '@/components/atoms/Inputs';
+
 import { User, UserRole } from '@/types/User';
 
 type CreateUserProps = {

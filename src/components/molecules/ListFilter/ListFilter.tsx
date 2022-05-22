@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { useAuth, useGet } from '@/hooks';
 
-import { SelectFieldInput } from '@/components/molecules/SelectFieldInput/SelectFieldInput';
+import { SelectFieldInput } from '@/components/atoms/Inputs/SelectFieldInput/SelectFieldInput';
 import { Button } from '@/components/atoms/Button/Button';
 import { addIdToRole, pluralize } from '@/helpers/others';
 
