@@ -1,0 +1,16 @@
+@use '@/styles/mixins';
+
+.listWrapper {
+  @include mixins.flexCenter;
+  height: 90%;
+  gap: 15px;
+  padding: 0 20px;
+  border-radius: 5px;
+  background-color: var(--white);
+}
+
+.inputsWrapper {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  height: 100%;
+}
