@@ -6,6 +6,7 @@ import { Button } from '@/components/atoms/Button/Button';
 import { addIdToRole, pluralize } from '@/helpers/others';
 
 import { Status, User, UserRole } from '@/types';
+import styles from './ListFilter.module.scss';
 
 type ListFilterType = {
   status: Status;
@@ -43,32 +44,34 @@ export const ListFilter = ({ refetchData }: ListFilterProps) => {
 
   return (
     <Formik onSubmit={handleRefetchData} initialValues={initialValues}>
-      <Form>
-        {isLoading && <p>Loading {pluralizedSingularName}...</p>}
-        {error ? (
-          <p>There was a problem with fetching {pluralizedSingularName}</p>
-        ) : (
-          <SelectFieldInput
-            label={`Choose ${user?.role}`}
-            name="userId"
-            isEmpty={users?.length === 0}
-          >
-            {users &&
-              users?.map(({ id, firstName, lastName }) => (
-                <option value={id} key={id}>
-                  {`${firstName} ${lastName}`}
-                </option>
-              ))}
+      <Form className={styles.listWrapper}>
+        <div className={styles.inputsWrapper}>
+          {isLoading && <p>Loading {pluralizedSingularName}...</p>}
+          {error ? (
+            <p>There was a problem with fetching {pluralizedSingularName}</p>
+          ) : (
+            <SelectFieldInput
+              label={`Choose ${user?.role}`}
+              name="userId"
+              isEmpty={users?.length === 0}
+            >
+              {users &&
+                users?.map(({ id, firstName, lastName }) => (
+                  <option value={id} key={id}>
+                    {`${firstName} ${lastName}`}
+                  </option>
+                ))}
+            </SelectFieldInput>
+          )}
+          <SelectFieldInput label="Status" name="status">
+            {requestStatuses.map((status) => (
+              <option value={status} key={status}>
+                {status}
+              </option>
+            ))}
           </SelectFieldInput>
-        )}
-        <SelectFieldInput label="Status" name="status">
-          {requestStatuses.map((status) => (
-            <option value={status} key={status}>
-              {status}
-            </option>
-          ))}
-        </SelectFieldInput>
-        <Button text="Filter" type="submit" />
+        </div>
+        <Button text="Filter" type="submit" className={styles.filterButton} />
       </Form>
     </Formik>
   );
