@@ -1,14 +1,16 @@
-import { useGet } from '@/hooks/useGet';
-import { useModal } from '@/hooks/useModal';
+import { useState } from 'react';
+import { useGet, useModal } from '@/hooks';
 
 import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 import { CreateClient } from '../Create/CreateClient';
 import { ClientListItem } from '@/components/molecules/ListItems/ClientListItem';
+import { filterBySearchingPhrase } from './helpers';
 
 import { Client } from '@/types/Client';
 
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
+  const [searchingPhrase, setSearchingPhrase] = useState<string>('');
 
   const {
     data: clients,
@@ -19,8 +21,17 @@ export function ClientList() {
     query: 'http://localhost:8000/api/clients',
   });
 
+  const filteredClients = clients?.filter((client) =>
+    filterBySearchingPhrase(searchingPhrase, [client.firstName, client.lastName]),
+  );
+
   return (
-    <ListWrapper handleOpenModal={handleOpenModal} singularName="client" isLoading={isLoading}>
+    <ListWrapper
+      handleOpenModal={handleOpenModal}
+      singularName="client"
+      isLoading={isLoading}
+      handleChangeSearchInput={setSearchingPhrase}
+    >
       {isModalOpen ? (
         <CreateClient
           isOpen={isModalOpen}
@@ -31,7 +42,7 @@ export function ClientList() {
       {error ? (
         <p>{error}</p>
       ) : (
-        clients?.map((client) => (
+        filteredClients?.map((client) => (
           <ClientListItem client={client} refetchClients={refetchClients} key={client.id} />
         ))
       )}

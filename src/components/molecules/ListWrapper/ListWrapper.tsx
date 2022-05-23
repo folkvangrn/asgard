@@ -9,6 +9,7 @@ type ListWrapperProps = {
   handleOpenModal: VoidFunction;
   singularName: string;
   isLoading: boolean;
+  handleChangeSearchInput: (value: string) => void;
   ListFilter?: ReactNode;
 };
 
@@ -18,12 +19,17 @@ export function ListWrapper({
   singularName,
   isLoading,
   ListFilter,
+  handleChangeSearchInput,
 }: ListWrapperProps) {
   return (
     <main className={styles.tableWrapper}>
       <div className={styles.table}>
         <div className={styles.tableHeader}>
-          <input placeholder="Search" type="text" />
+          <input
+            placeholder="Search"
+            type="text"
+            onChange={(e) => handleChangeSearchInput(e.target.value)}
+          />
           {ListFilter}
           <Button
             text={`Add ${singularName}`}
