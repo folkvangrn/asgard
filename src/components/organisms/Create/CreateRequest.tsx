@@ -4,7 +4,7 @@ import { useGet, useAuth } from '@/hooks/';
 import { GenericCreateForm } from './GenericCreateForm';
 import { SelectFieldInput, TextAreaFieldInput, TextFieldInput } from '@/components/atoms/Inputs';
 
-import { Vehicle, Request } from '@/types';
+import { Vehicle, Request, Status } from '@/types';
 
 type CreateRequestProps = {
   isOpen: boolean;
@@ -32,8 +32,8 @@ export function CreateRequest({
     description: '',
     managerId: user?.id,
     vehicleVin: vehicles?.at(0)?.vin,
+    status: Status.Open,
   };
-
   return (
     <GenericCreateForm<Request>
       isOpen={isOpen}
@@ -48,6 +48,7 @@ export function CreateRequest({
           .required('Required'),
         managerId: Yup.number(), //TODO: work on validation
         vehicleVin: Yup.string().required(),
+        status: Yup.string(),
       })}
       refetchData={refetchRequests}
       query={requestId ? `${GET_REQUESTS_QUERY}/${requestId}` : GET_REQUESTS_QUERY}
@@ -76,6 +77,15 @@ export function CreateRequest({
           ))}
         </SelectFieldInput>
       )}
+      {requestId ? (
+        <SelectFieldInput label="Status" name="status">
+          {Object.values(Status).map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </SelectFieldInput>
+      ) : null}
     </GenericCreateForm>
   );
 }
