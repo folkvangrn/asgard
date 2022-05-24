@@ -1,8 +1,8 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 
 import { RequireAuth } from '@/routes/RequireAuth';
-import { Dashboard } from '@/components/views/Dashboard/Dashboard';
-import { LoginPanel } from '@/components/views/LoginPanel/LoginPanel';
+import { Dashboard } from '@/views/Dashboard/Dashboard';
+import { LoginPanel } from '@/views/LoginPanel/LoginPanel';
 import { DefaultRoute } from '@/routes/DefaultRoute';
 
 import { UserRole } from './types/User';
