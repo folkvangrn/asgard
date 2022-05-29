@@ -1,6 +1,7 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Formik } from 'formik';
 import { useGet } from '@/hooks/useGet';
+import { toast } from 'react-toastify';
 
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
@@ -35,7 +36,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
   refetchData,
 }: GenericCreateForm<T>) {
   const headerText = getHeaderText(!!initialId, singularName);
-  const [message, setMessage] = useState<string>('');
+
   const { data: givenData } = useGet<T>({
     query,
     skip: initialId ? false : true,
@@ -44,7 +45,19 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
   const handleAfterCreate = () => {
     refetchData();
     handleCloseModal();
-    console.log('dodano git');
+  };
+  const preparePositiveMessage = (): string => {
+    return !initialId
+      ? `${singularName} was added succesfully`
+      : `${singularName} was edited succesfully`;
+  };
+
+  const prepareNegativeMessage = (message?: string): string => {
+    if (message) return message;
+
+    return !initialId
+      ? `There was a problem when adding a ${singularName}`
+      : `There was a problem when editing a ${singularName}`;
   };
 
   const givenValues: T = initialId ? givenData! : initialFormValues;
@@ -61,27 +74,21 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
         },
         body: JSON.stringify({ ...values }),
       });
+      console.log(response);
       if (response.status === 200) {
-        setMessage(
-          !initialId
-            ? `${singularName} has been added succesfully!`
-            : `${singularName} has been edited succesfully!`,
-        );
         handleAfterCreate();
+        toast(preparePositiveMessage(), {
+          type: 'success',
+        });
       } else {
-        setMessage(
-          !initialId
-            ? `There was a problem when adding a ${singularName}`
-            : `There was a problem when editing a ${singularName}`,
-        );
+        toast(prepareNegativeMessage(), {
+          type: 'error',
+        });
       }
     } catch (e) {
-      console.error(e);
-      setMessage(
-        !initialId
-          ? `There was a problem when adding a ${singularName}`
-          : `There was a problem when editing a ${singularName}`,
-      );
+      toast(prepareNegativeMessage(), {
+        type: 'error',
+      });
     }
   };
   return (
@@ -92,10 +99,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
         initialValues={givenValues}
         onSubmit={handleSubmitForm}
       >
-        <FormWrapper handleCloseForm={handleCloseModal}>
-          {children}
-          {message ? <p>{message}</p> : null}
-        </FormWrapper>
+        <FormWrapper handleCloseForm={handleCloseModal}>{children}</FormWrapper>
       </Formik>
     </Modal>
   );

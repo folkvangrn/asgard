@@ -81,7 +81,11 @@ export function CreateActivity({
       {activityDictionaryError ? (
         <p>{activityDictionaryError}</p>
       ) : (
-        <SelectFieldInput label="Actvity type" name="activityType" isEmpty={workers?.length === 0}>
+        <SelectFieldInput
+          label="Actvity type"
+          name="activityDictionaryActivityType"
+          isEmpty={workers?.length === 0}
+        >
           {activityDictionary?.map(({ activityName, activityType, estimatedDuration }) => (
             <option key={activityType} value={activityType}>
               {`${activityName} ${estimatedDuration}`}
