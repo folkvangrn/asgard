@@ -1,12 +1,12 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Formik } from 'formik';
 import { useGet } from '@/hooks/useGet';
+import { toast } from 'react-toastify';
 
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { FormWrapper } from '@/components/atoms/FormWrapper/FormWrapper';
 
 import { User, Client, Vehicle, Request, Activity } from '@/types';
-import { useToast } from '@/hooks';
 
 type GenericCreateForm<T> = {
   isOpen: boolean;
@@ -36,7 +36,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
   refetchData,
 }: GenericCreateForm<T>) {
   const headerText = getHeaderText(!!initialId, singularName);
-  const { toast } = useToast();
+
   const { data: givenData } = useGet<T>({
     query,
     skip: initialId ? false : true,
@@ -77,12 +77,18 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
       console.log(response);
       if (response.status === 200) {
         handleAfterCreate();
-        toast(preparePositiveMessage(), 'success');
+        toast(preparePositiveMessage(), {
+          type: 'success',
+        });
       } else {
-        toast(prepareNegativeMessage(), 'success');
+        toast(prepareNegativeMessage(), {
+          type: 'error',
+        });
       }
     } catch (e) {
-      toast(prepareNegativeMessage(), 'error');
+      toast(prepareNegativeMessage(), {
+        type: 'error',
+      });
     }
   };
   return (

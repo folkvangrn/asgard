@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@/hooks';
+import { Notification } from '@/components/atoms/Notification/Notification';
 import Root from '@/Root';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 import '../styles/_index.scss';
 
@@ -16,7 +15,7 @@ export function AppProviders() {
           <Route path="/*" element={<Root />} />
         </Routes>
       </AuthProvider>
-      <ToastContainer />
+      <Notification />
     </BrowserRouter>
   );
 }

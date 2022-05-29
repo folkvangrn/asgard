@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useToast } from './useToast/useToast';
+import { toast } from 'react-toastify';
 import { User } from '@/types/User';
 
 interface IAuthContext {
@@ -20,7 +20,6 @@ type AuthProviderProps = {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const { toast } = useToast();
 
   useEffect(() => {
     try {
@@ -48,7 +47,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
     } catch (e) {
-      toast('Your password or username is incorrect.', 'error');
+      toast('Your password or username is incorrect.', { type: 'error' });
     }
   };
 
