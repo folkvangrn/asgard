@@ -74,7 +74,7 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
         },
         body: JSON.stringify({ ...values }),
       });
-      console.log(response);
+
       if (response.status === 200) {
         handleAfterCreate();
         toast(preparePositiveMessage(), {
