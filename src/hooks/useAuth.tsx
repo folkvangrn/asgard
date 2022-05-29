@@ -1,22 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { User, UserRole } from '@/types/User';
+import { useToast } from './useToast/useToast';
+import { User } from '@/types/User';
 
 interface IAuthContext {
   user: User | null;
   signIn: (username: string, pasword: string) => void;
   signOut: VoidFunction;
 }
-
-// const userData: LoggedUser = {
-//   id: 1,
-//   username: 'test',
-//   firstName: 'firstName',
-//   lastName: 'lastName',
-//   role: UserRole.Admin,
-//   token: 'test',
-//   password: 'test',
-//   active: true,
-// };
 
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
@@ -30,6 +20,7 @@ type AuthProviderProps = {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     try {
@@ -37,7 +28,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (!storedUser) return;
       const parsedUser = JSON.parse(storedUser!);
       setUser(parsedUser);
-    } catch (e) {}
+    } catch (e) {
+      signOut();
+    }
   }, []);
 
   const signIn = async (username: string, password: string) => {
@@ -55,7 +48,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
     } catch (e) {
-      console.error(e);
+      toast('Your password or username is incorrect.', 'error');
     }
   };
 

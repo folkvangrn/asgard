@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 
@@ -29,9 +29,10 @@ export function LoginPanel() {
   };
 
   useEffect(() => {
-    const defaultRoute = getDefaultRoute(user?.role);
-    if (user?.active) navigate(`${defaultRoute}`, { replace: true });
-    else if (!user?.active === false) alert('Your account was deactivated');
+    if (user?.role) {
+      const defaultRoute = getDefaultRoute(user?.role);
+      navigate(`${defaultRoute}`, { replace: true });
+    }
   }, [user]);
 
   return (
