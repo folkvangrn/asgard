@@ -61,12 +61,8 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
         },
         body: JSON.stringify({ ...values }),
       });
+      console.log(response);
       if (response.status === 200) {
-        setMessage(
-          !initialId
-            ? `${singularName} has been added succesfully!`
-            : `${singularName} has been edited succesfully!`,
-        );
         handleAfterCreate();
       } else {
         setMessage(

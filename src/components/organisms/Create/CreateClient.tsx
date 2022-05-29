@@ -40,7 +40,7 @@ export function CreateClient({
         lastName: Yup.string().required('Required'),
         phoneNumber: Yup.string().required('Required'),
         email: Yup.string().required('Required'),
-        companyName: Yup.string().required('Required'),
+        companyName: Yup.string(),
       })}
       refetchData={refetchClients}
       query={clientId ? `${GET_CLIENTS_QUERY}/${clientId}` : GET_CLIENTS_QUERY}
