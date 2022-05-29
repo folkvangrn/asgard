@@ -6,6 +6,7 @@ import { CreateRequest } from '@/components/organisms/Create/CreateRequest';
 import { Request } from '@/types';
 
 import styles from './RequestHeader.module.scss';
+import { prettifyDate } from '@/helpers/others';
 
 export type RequestHeaderProps = {
   error: string | null;
@@ -46,12 +47,12 @@ export const RequestHeader = ({ error, request, refetchRequest }: RequestHeaderP
       value: request?.vehicleClass,
     },
     {
-      title: 'Date request:',
-      value: request?.dateRequest,
+      title: 'Date Request:',
+      value: prettifyDate(request?.dateRequest),
     },
     {
       title: 'Date Closed:',
-      value: request?.dateClosed,
+      value: prettifyDate(request?.dateClosed),
     },
     {
       title: 'Status:',
