@@ -10,6 +10,7 @@ export const useToast = () => {
       closeOnClick: true,
       draggable: false,
       className: styles.toast,
+      pauseOnFocusLoss: false,
     });
   };
   return {
