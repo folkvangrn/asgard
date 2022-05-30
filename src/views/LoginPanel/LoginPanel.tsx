@@ -16,6 +16,7 @@ type LoginFormValues = {
 };
 
 export function LoginPanel() {
+  document.title = 'Sign in';
   const { user, signIn } = useAuth();
   const navigate = useNavigate();
 
