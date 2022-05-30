@@ -25,7 +25,7 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
     error,
     isLoading,
     refetchData: refetchActivities,
-  } = useGet<Activity[] | undefined>({
+  } = useGet<Activity[]>({
     query: GET_ACTIVITIES_QUERY,
   });
 

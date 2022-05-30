@@ -18,7 +18,7 @@ export function ClientList() {
     error,
     isLoading,
     refetchData: refetchClients,
-  } = useGet<Client[] | undefined>({
+  } = useGet<Client[]>({
     query: 'http://localhost:8000/api/clients',
   });
 

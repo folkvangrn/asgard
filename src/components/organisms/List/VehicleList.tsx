@@ -18,7 +18,7 @@ export function VehicleList() {
     error,
     isLoading,
     refetchData: refetchVehicles,
-  } = useGet<Vehicle[] | undefined>({
+  } = useGet<Vehicle[]>({
     query: 'http://localhost:8000/api/vehicles',
   });
 

@@ -17,7 +17,7 @@ export function RequestsList() {
     error,
     isLoading,
     refetchData: refetchRequests,
-  } = useGet<Request[] | null>({
+  } = useGet<Request[]>({
     query: `http://localhost:8000/api/requests?managerid=${user?.id}&status=${Status.Open}`,
   });
 

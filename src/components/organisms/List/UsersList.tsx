@@ -18,7 +18,7 @@ export function UsersList() {
     error,
     isLoading,
     refetchData,
-  } = useGet<User[] | undefined>({
+  } = useGet<User[]>({
     query: 'http://localhost:8000/api/users',
   });
 
