@@ -4,6 +4,7 @@ import { ListWrapper } from '@/components/molecules/ListWrapper/ListWrapper';
 import { CreateRequest } from '../Create/CreateRequest';
 import { ListFilter } from '@/components/molecules/ListFilter/ListFilter';
 import { RequestListItem } from '@/components/molecules/ListItems/RequestListItem';
+import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 import { Request, Status } from '@/types';
 
@@ -16,7 +17,7 @@ export function RequestsList() {
     error,
     isLoading,
     refetchData: refetchRequests,
-  } = useGet<Request[] | undefined>({
+  } = useGet<Request[]>({
     query: `http://localhost:8000/api/requests?managerid=${user?.id}&status=${Status.Open}`,
   });
 
@@ -24,7 +25,6 @@ export function RequestsList() {
     <ListWrapper
       handleOpenModal={handleOpenModal}
       singularName="request"
-      isLoading={isLoading}
       ListFilter={<ListFilter refetchData={refetchRequests} />}
     >
       {isModalOpen ? (
@@ -34,11 +34,11 @@ export function RequestsList() {
           refetchRequests={refetchRequests}
         />
       ) : null}
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        requests?.map((request) => <RequestListItem request={request} key={request.id} />)
-      )}
+      <ItemsWrapper errorMessage={error} isLoading={isLoading} isEmpty={requests?.length === 0}>
+        {requests?.map((request) => (
+          <RequestListItem request={request} />
+        ))}
+      </ItemsWrapper>
     </ListWrapper>
   );
 }

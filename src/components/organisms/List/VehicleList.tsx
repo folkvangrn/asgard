@@ -7,6 +7,7 @@ import { VehicleListItem } from '@/components/molecules/ListItems/VehicleListIte
 import { filterBySearchingPhrase } from './helpers';
 
 import { Vehicle } from '@/types/Vehicle';
+import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 export function VehicleList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -17,7 +18,7 @@ export function VehicleList() {
     error,
     isLoading,
     refetchData: refetchVehicles,
-  } = useGet<Vehicle[] | undefined>({
+  } = useGet<Vehicle[]>({
     query: 'http://localhost:8000/api/vehicles',
   });
 
@@ -29,7 +30,6 @@ export function VehicleList() {
     <ListWrapper
       handleOpenModal={handleOpenModal}
       singularName="vehicle"
-      isLoading={isLoading}
       handleChangeSearchInput={setSearchingPhrase}
     >
       {isModalOpen ? (
@@ -39,13 +39,11 @@ export function VehicleList() {
           refetchVehicles={refetchVehicles}
         />
       ) : null}
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        filteredVehicles?.map((vehicle) => (
+      <ItemsWrapper errorMessage={error} isLoading={isLoading} isEmpty={vehicles?.length === 0}>
+        {filteredVehicles?.map((vehicle) => (
           <VehicleListItem vehicle={vehicle} refetchVehicles={refetchVehicles} key={vehicle.vin} />
-        ))
-      )}
+        ))}
+      </ItemsWrapper>
     </ListWrapper>
   );
 }

@@ -7,6 +7,7 @@ import { ClientListItem } from '@/components/molecules/ListItems/ClientListItem'
 import { filterBySearchingPhrase } from './helpers';
 
 import { Client } from '@/types/Client';
+import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -17,7 +18,7 @@ export function ClientList() {
     error,
     isLoading,
     refetchData: refetchClients,
-  } = useGet<Client[] | undefined>({
+  } = useGet<Client[]>({
     query: 'http://localhost:8000/api/clients',
   });
 
@@ -29,7 +30,6 @@ export function ClientList() {
     <ListWrapper
       handleOpenModal={handleOpenModal}
       singularName="client"
-      isLoading={isLoading}
       handleChangeSearchInput={setSearchingPhrase}
     >
       {isModalOpen ? (
@@ -39,13 +39,11 @@ export function ClientList() {
           refetchClients={refetchClients}
         />
       ) : null}
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        filteredClients?.map((client) => (
+      <ItemsWrapper errorMessage={error} isLoading={isLoading} isEmpty={clients?.length === 0}>
+        {filteredClients?.map((client) => (
           <ClientListItem client={client} refetchClients={refetchClients} key={client.id} />
-        ))
-      )}
+        ))}
+      </ItemsWrapper>
     </ListWrapper>
   );
 }

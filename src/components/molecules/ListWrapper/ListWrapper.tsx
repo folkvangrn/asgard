@@ -8,8 +8,7 @@ type ListWrapperProps = {
   children: ReactNode[];
   handleOpenModal: VoidFunction;
   singularName: string;
-  isLoading: boolean;
-  handleChangeSearchInput: (value: string) => void;
+  handleChangeSearchInput?: (value: string) => void;
   ListFilter?: ReactNode;
 };
 
@@ -17,7 +16,6 @@ export function ListWrapper({
   children,
   handleOpenModal,
   singularName,
-  isLoading,
   ListFilter,
   handleChangeSearchInput,
 }: ListWrapperProps) {
@@ -28,7 +26,7 @@ export function ListWrapper({
           <input
             placeholder="Search"
             type="text"
-            onChange={(e) => handleChangeSearchInput(e.target.value)}
+            onChange={(e) => handleChangeSearchInput && handleChangeSearchInput(e.target.value)}
           />
           {ListFilter}
           <Button
@@ -37,10 +35,7 @@ export function ListWrapper({
             onClick={handleOpenModal}
           />
         </div>
-        <div className={styles.tableContent}>
-          {isLoading ? <p>Loading...</p> : null}
-          {children}
-        </div>
+        <div className={styles.tableContent}>{children}</div>
       </div>
     </main>
   );
