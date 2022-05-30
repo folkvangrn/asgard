@@ -7,6 +7,7 @@ import { CreateUser } from '../Create/CreateUser';
 import { filterBySearchingPhrase } from './helpers';
 
 import { User } from '@/types/User';
+import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -29,7 +30,6 @@ export function UsersList() {
     <ListWrapper
       handleOpenModal={handleOpenModal}
       singularName="user"
-      isLoading={isLoading}
       handleChangeSearchInput={setSearchingPhrase}
     >
       {isModalOpen ? (
@@ -39,13 +39,11 @@ export function UsersList() {
           refetchUsers={refetchData}
         />
       ) : null}
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        filteredUsers?.map((user) => (
+      <ItemsWrapper errorMessage={error} isLoading={isLoading} isEmpty={users?.length === 0}>
+        {filteredUsers?.map((user) => (
           <UsersListItem user={user} refetchUsers={refetchData} key={user.id} />
-        ))
-      )}
+        ))}
+      </ItemsWrapper>
     </ListWrapper>
   );
 }

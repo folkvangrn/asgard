@@ -6,6 +6,7 @@ import { ActivityListItem } from '@/components/molecules/ListItems/ActivityListI
 import { ListFilter } from '@/components/molecules/ListFilter/ListFilter';
 
 import { Activity, Status } from '@/types';
+import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 type ActivitiesListProps = {
   requestId?: number;
@@ -30,7 +31,6 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
 
   return (
     <ListWrapper
-      isLoading={isLoading}
       handleOpenModal={handleOpenModal}
       singularName="activity"
       ListFilter={!requestId && <ListFilter refetchData={refetchActivities} />}
@@ -43,17 +43,15 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
           refetchActivities={refetchActivities}
         />
       ) : null}
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        (activities || []).map((activity) => (
+      <ItemsWrapper errorMessage={error} isLoading={isLoading} isEmpty={activities?.length === 0}>
+        {(activities || []).map((activity) => (
           <ActivityListItem
             activity={activity}
             refetchActivities={refetchActivities}
             key={activity.id}
           />
-        ))
-      )}
+        ))}
+      </ItemsWrapper>
     </ListWrapper>
   );
 }
