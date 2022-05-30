@@ -18,7 +18,7 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
 
   const GET_ACTIVITIES_QUERY = requestId
     ? `http://localhost:8000/api/requests/${requestId}/activities`
-    : `http://localhost:8000/api/activities?workerid=${user?.id}&status=${Status.Open}`;
+    : `http://localhost:8000/api/activities?workerid=${user?.id}`;
 
   const {
     data: activities,

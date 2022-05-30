@@ -9,7 +9,7 @@ import { Status, User, UserRole } from '@/types';
 import styles from './ListFilter.module.scss';
 
 type ListFilterType = {
-  status: Status;
+  status: Status | 'ALL';
   userId: number;
 };
 
@@ -20,19 +20,19 @@ type ListFilterProps = {
 export const ListFilter = ({ refetchData }: ListFilterProps) => {
   const { user } = useAuth();
   const pluralizedSingularName = pluralize(user?.role!);
-  const requestStatuses = Object.values(Status);
+  const requestStatuses = ['ALL', ...Object.values(Status)];
 
   const initialValues: ListFilterType = {
-    status: Status.Open,
+    status: 'ALL',
     userId: user?.id || 0,
   };
 
   const handleRefetchData = (values: ListFilterType) => {
     const { userId, status } = values;
     const dataType = user?.role === UserRole.Manager ? 'requests' : 'activities';
-
+    const statusQuery = status === 'ALL' ? '' : `&status=${status}`;
     refetchData(
-      `http://localhost:8000/api/${dataType}?${addIdToRole(user?.role)}=${userId}&status=${status}`,
+      `http://localhost:8000/api/${dataType}?${addIdToRole(user?.role)}=${userId}${statusQuery}`,
     );
   };
 
