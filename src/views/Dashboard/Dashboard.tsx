@@ -13,18 +13,30 @@ import styles from './Dashboard.module.scss';
 
 const ManageTableByPath: React.FC<{ path: string }> = ({ path }) => {
   switch (path) {
-    case 'users':
+    case 'users': {
+      document.title = 'Users';
       return <UsersList />;
-    case 'vehicles':
+    }
+    case 'vehicles': {
+      document.title = 'Vehicles';
       return <VehicleList />;
-    case 'clients':
+    }
+    case 'clients': {
+      document.title = 'Clients';
       return <ClientList />;
-    case 'requests':
+    }
+    case 'requests': {
+      document.title = 'Requests';
       return <RequestsList />;
-    case 'requestDetails':
+    }
+    case 'requestDetails': {
+      document.title = 'Request details';
       return <RequestDetails />;
-    case 'activities':
+    }
+    case 'activities': {
+      document.title = 'Activities';
       return <ActivitiesList />;
+    }
     default:
       return null;
   }
