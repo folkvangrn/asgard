@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      // const request_url = process.env.REACT_APP_BACKEND_URL + "/login";
       const request_url = "http://localhost:8000/login";
       const response = await fetch(request_url, {
         method: 'POST',
