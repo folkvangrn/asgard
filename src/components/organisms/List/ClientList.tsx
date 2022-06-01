@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { Client } from '@/types/Client';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = "http://172.17.0.1:8000" + "/api/clients"
+const requestUrl = "http://192.168.1.234:8000" + "/api/clients"
 
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);

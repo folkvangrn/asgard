@@ -8,7 +8,7 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 import { Request, Status } from '@/types';
 
-const requestUrl = "http://172.17.0.1:8000";
+const requestUrl = "http://192.168.1.234:8000";
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);

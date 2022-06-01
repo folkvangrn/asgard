@@ -12,7 +12,7 @@ type CreateClientProps = {
   refetchClients: VoidFunction;
 };
 
-const GET_CLIENTS_QUERY = 'http://172.17.0.1:8000/api/clients';
+const GET_CLIENTS_QUERY = 'http://192.168.1.234:8000/api/clients';
 
 export function CreateClient({
   isOpen,

@@ -13,9 +13,9 @@ type CreateVehicleProps = {
   refetchVehicles: VoidFunction;
 };
 
-const GET_VEHICLES_QUERY = 'http://172.17.0.1:8000/api/vehicles';
-const GET_CLIENTS_QUERY = 'http://172.17.0.1:8000/api/clients';
-const GET_VEHICLETYPES_QUERY = 'http://172.17.0.1:8000/api/vehicles/types';
+const GET_VEHICLES_QUERY = 'http://192.168.1.234:8000/api/vehicles';
+const GET_CLIENTS_QUERY = 'http://192.168.1.234:8000/api/clients';
+const GET_VEHICLETYPES_QUERY = 'http://192.168.1.234:8000/api/vehicles/types';
 export function CreateVehicle({
   isOpen,
   handleCloseModal,

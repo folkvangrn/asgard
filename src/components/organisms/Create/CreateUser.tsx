@@ -12,7 +12,7 @@ type CreateUserProps = {
   refetchUsers: VoidFunction;
 };
 
-const GET_USERS_QUERY = 'http://172.17.0.1:8000/api/users';
+const GET_USERS_QUERY = 'http://192.168.1.234:8000/api/users';
 
 export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: CreateUserProps) {
   const initialValues: User = {

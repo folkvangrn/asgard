@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { User } from '@/types/User';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = "http://172.17.0.1:8000";
+const requestUrl = "http://192.168.1.234:8000";
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
