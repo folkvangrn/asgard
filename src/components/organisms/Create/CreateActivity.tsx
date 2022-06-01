@@ -14,13 +14,9 @@ type CreateActivityProps = {
   requestId: number;
 };
 
-//const GET_ACTIVITIES_QUERY = 'http://localhost:8000/api/activities';
-//const GET_WORKERS_QUERY = 'http://localhost:8000/api/users/workers';
-//const GET_ACTIVITY_DICTIONARY = 'http://localhost:8000/api/activity-dictionary';
-
-const GET_ACTIVITIES_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/activities';
-const GET_WORKERS_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/users/workers';
-const GET_ACTIVITY_DICTIONARY = process.env.REACT_APP_BACKEND_URL + '/api/activity-dictionary';
+const GET_ACTIVITIES_QUERY = 'http://localhost:8000/api/activities';
+const GET_WORKERS_QUERY = 'http://localhost:8000/api/users/workers';
+const GET_ACTIVITY_DICTIONARY = 'http://localhost:8000/api/activity-dictionary';
 
 export function CreateActivity({
   isOpen,

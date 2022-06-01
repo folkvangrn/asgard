@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { Client } from '@/types/Client';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = process.env.REACT_APP_BACKEND_URL + "/api/clients"
+const requestUrl = "http://localhost:8000" + "/api/clients"
 
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);

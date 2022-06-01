@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { User } from '@/types/User';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = process.env.REACT_APP_BACKEND_URL;
+const requestUrl = "http://localhost:8000";
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);

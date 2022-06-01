@@ -11,7 +11,7 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 type ActivitiesListProps = {
   requestId?: number;
 };
-const requestUrl = process.env.REACT_APP_BACKEND_URL;
+const requestUrl = "http://localhost:8000";
 export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const { user } = useAuth();

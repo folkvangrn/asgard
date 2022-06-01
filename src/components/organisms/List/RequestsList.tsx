@@ -8,7 +8,7 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 import { Request, Status } from '@/types';
 
-const requestUrl = process.env.REACT_APP_BACKEND_URL;
+const requestUrl = "http://localhost:8000";
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
