@@ -14,9 +14,9 @@ type CreateActivityProps = {
   requestId: number;
 };
 
-const GET_ACTIVITIES_QUERY = 'http://localhost:8000/api/activities';
-const GET_WORKERS_QUERY = 'http://localhost:8000/api/users/workers';
-const GET_ACTIVITY_DICTIONARY = 'http://localhost:8000/api/activity-dictionary';
+const GET_ACTIVITIES_QUERY = 'http://172.17.0.1:8000/api/activities';
+const GET_WORKERS_QUERY = 'http://172.17.0.1:8000/api/users/workers';
+const GET_ACTIVITY_DICTIONARY = 'http://172.17.0.1:8000/api/activity-dictionary';
 
 export function CreateActivity({
   isOpen,

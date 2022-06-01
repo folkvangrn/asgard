@@ -8,7 +8,7 @@ import { addIdToRole, pluralize } from '@/helpers/others';
 import { Status, User, UserRole } from '@/types';
 import styles from './ListFilter.module.scss';
 
-const requestUrl = "http://localhost:8000";
+const requestUrl = "http://172.17.0.1:8000";
 
 type ListFilterType = {
   status: Status | 'ALL';

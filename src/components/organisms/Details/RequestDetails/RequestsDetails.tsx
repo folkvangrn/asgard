@@ -6,7 +6,7 @@ import { ActivitiesList } from '@/components/organisms/List/ActivitiesList';
 
 import styles from './RequestDetails.module.scss';
 import { Request } from '@/types';
-const requestUrl = "http://localhost:8000" + "/api/requests/";
+const requestUrl = "http://172.17.0.1:8000" + "/api/requests/";
 export function RequestDetails() {
   const { requestId } = useParams();
   const {

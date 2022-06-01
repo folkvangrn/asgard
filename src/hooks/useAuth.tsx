@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      const request_url = "http://localhost:8000/login";
+      const request_url = "http://172.17.0.1:8000/login";
       const response = await fetch(request_url, {
         method: 'POST',
         headers: {
