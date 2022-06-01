@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Make docker image
-        run: cd server && docker login -u nixen -p $TOKEN && make build-docker && make publish-docker
+        run: docker login -u nixen -p $TOKEN && make build-docker && make publish-docker
         env:
           TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           TAG_NAME: ${{ secrets.TAG_NAME }}
