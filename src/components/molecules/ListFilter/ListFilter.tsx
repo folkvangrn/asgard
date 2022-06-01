@@ -8,6 +8,8 @@ import { addIdToRole, pluralize } from '@/helpers/others';
 import { Status, User, UserRole } from '@/types';
 import styles from './ListFilter.module.scss';
 
+const requestUrl = process.env.REACT_APP_BACKEND_URL;
+
 type ListFilterType = {
   status: Status | 'ALL';
   userId: number;
@@ -32,7 +34,7 @@ export const ListFilter = ({ refetchData }: ListFilterProps) => {
     const dataType = user?.role === UserRole.Manager ? 'requests' : 'activities';
     const statusQuery = status === 'ALL' ? '' : `&status=${status}`;
     refetchData(
-      `http://localhost:8000/api/${dataType}?${addIdToRole(user?.role)}=${userId}${statusQuery}`,
+      requestUrl + `/api/${dataType}?${addIdToRole(user?.role)}=${userId}${statusQuery}`,
     );
   };
 
@@ -40,7 +42,7 @@ export const ListFilter = ({ refetchData }: ListFilterProps) => {
     data: users = [],
     error,
     isLoading,
-  } = useGet<User[]>({ query: `http://localhost:8000/api/users/${pluralizedSingularName}` });
+  } = useGet<User[]>({ query: requestUrl + `/api/users/${pluralizedSingularName}` });
 
   return (
     <Formik onSubmit={handleRefetchData} initialValues={initialValues}>

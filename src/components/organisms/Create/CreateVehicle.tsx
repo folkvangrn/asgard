@@ -13,10 +13,13 @@ type CreateVehicleProps = {
   refetchVehicles: VoidFunction;
 };
 
-const GET_VEHICLES_QUERY = 'http://localhost:8000/api/vehicles';
-const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
-const GET_VEHICLETYPES_QUERY = 'http://localhost:8000/api/vehicles/types';
-
+// const GET_VEHICLES_QUERY = 'http://localhost:8000/api/vehicles';
+// const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
+// const GET_VEHICLETYPES_QUERY = 'http://localhost:8000/api/vehicles/types';
+process.env.REACT_APP_BACKEND_URL
+const GET_VEHICLES_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/vehicles';
+const GET_CLIENTS_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/clients';
+const GET_VEHICLETYPES_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/vehicles/types';
 export function CreateVehicle({
   isOpen,
   handleCloseModal,

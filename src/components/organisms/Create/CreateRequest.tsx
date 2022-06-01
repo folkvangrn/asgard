@@ -13,8 +13,11 @@ type CreateRequestProps = {
   refetchRequests: VoidFunction;
 };
 
-const GET_VEHICLES_QUERY = 'http://localhost:8000/api/vehicles';
-const GET_REQUESTS_QUERY = 'http://localhost:8000/api/requests';
+//const GET_VEHICLES_QUERY = 'http://localhost:8000/api/vehicles';
+//const GET_REQUESTS_QUERY = 'http://localhost:8000/api/requests';
+
+const GET_VEHICLES_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/vehicles';
+const GET_REQUESTS_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/requests';
 
 export function CreateRequest({
   isOpen,

@@ -11,14 +11,14 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 type ActivitiesListProps = {
   requestId?: number;
 };
-
+const requestUrl = process.env.REACT_APP_BACKEND_URL;
 export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const { user } = useAuth();
 
   const GET_ACTIVITIES_QUERY = requestId
-    ? `http://localhost:8000/api/requests/${requestId}/activities`
-    : `http://localhost:8000/api/activities?workerid=${user?.id}`;
+    ? requestUrl + `/api/requests/${requestId}/activities`
+    : requestUrl + `/api/activities?workerid=${user?.id}`;
 
   const {
     data: activities,

@@ -9,6 +9,8 @@ import { filterBySearchingPhrase } from './helpers';
 import { User } from '@/types/User';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
+const requestUrl = process.env.REACT_APP_BACKEND_URL;
+
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const [searchingPhrase, setSearchingPhrase] = useState<string>('');
@@ -19,7 +21,7 @@ export function UsersList() {
     isLoading,
     refetchData,
   } = useGet<User[]>({
-    query: 'http://localhost:8000/api/users',
+    query: requestUrl + '/api/users',
   });
 
   const filteredUsers = users?.filter((user) =>

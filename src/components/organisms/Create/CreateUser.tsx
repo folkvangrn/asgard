@@ -12,7 +12,8 @@ type CreateUserProps = {
   refetchUsers: VoidFunction;
 };
 
-const GET_USERS_QUERY = 'http://localhost:8000/api/users';
+//const GET_USERS_QUERY = 'http://localhost:8000/api/users';
+const GET_USERS_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/users';
 
 export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: CreateUserProps) {
   const initialValues: User = {

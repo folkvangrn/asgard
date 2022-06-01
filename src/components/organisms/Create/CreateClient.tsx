@@ -12,7 +12,8 @@ type CreateClientProps = {
   refetchClients: VoidFunction;
 };
 
-const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
+// const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
+const GET_CLIENTS_QUERY = process.env.REACT_APP_BACKEND_URL + '/api/clients';
 
 export function CreateClient({
   isOpen,
