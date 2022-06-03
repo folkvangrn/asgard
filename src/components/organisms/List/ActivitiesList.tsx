@@ -11,14 +11,14 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 type ActivitiesListProps = {
   requestId?: number;
 };
-const requestUrl = "http://192.168.1.234:8000";
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
 export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const { user } = useAuth();
 
   const GET_ACTIVITIES_QUERY = requestId
-    ? requestUrl + `/api/requests/${requestId}/activities`
-    : requestUrl + `/api/activities?workerid=${user?.id}`;
+    ? requestUrl + `/api/v1/requests/${requestId}/activities`
+    : requestUrl + `/api/v1/activities?workerid=${user?.id}`;
 
   const {
     data: activities,

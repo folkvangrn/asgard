@@ -8,7 +8,7 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
 import { Request, Status } from '@/types';
 
-const requestUrl = "http://192.168.1.234:8000";
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
 
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -20,7 +20,7 @@ export function RequestsList() {
     isLoading,
     refetchData: refetchRequests,
   } = useGet<Request[]>({
-    query: requestUrl + `/api/requests?managerid=${user?.id}`,
+    query: requestUrl + `/api/v1/requests?managerid=${user?.id}`,
   });
 
   return (

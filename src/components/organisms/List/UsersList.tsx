@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { User } from '@/types/User';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = "http://192.168.1.234:8000";
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
 
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -21,7 +21,7 @@ export function UsersList() {
     isLoading,
     refetchData,
   } = useGet<User[]>({
-    query: requestUrl + '/api/users',
+    query: requestUrl + '/api/v1/users',
   });
 
   const filteredUsers = users?.filter((user) =>

@@ -9,7 +9,7 @@ import { filterBySearchingPhrase } from './helpers';
 import { Vehicle } from '@/types/Vehicle';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
-const requestUrl = "http://192.168.1.234:8000";
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
 
 export function VehicleList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
@@ -21,7 +21,7 @@ export function VehicleList() {
     isLoading,
     refetchData: refetchVehicles,
   } = useGet<Vehicle[]>({
-    query: requestUrl + '/api/vehicles',
+    query: requestUrl + '/api/v1/vehicles',
   });
 
   const filteredVehicles = vehicles?.filter((vehicle) =>

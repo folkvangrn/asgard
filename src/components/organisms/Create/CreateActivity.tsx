@@ -14,9 +14,9 @@ type CreateActivityProps = {
   requestId: number;
 };
 
-const GET_ACTIVITIES_QUERY = 'http://192.168.1.234:8000/api/activities';
-const GET_WORKERS_QUERY = 'http://192.168.1.234:8000/api/users/workers';
-const GET_ACTIVITY_DICTIONARY = 'http://192.168.1.234:8000/api/activity-dictionary';
+const GET_ACTIVITIES_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/activities';
+const GET_WORKERS_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/users/workers';
+const GET_ACTIVITY_DICTIONARY = 'http://vehicle-remedy.nixenos.ovh/api/v1/activity-dictionary';
 
 export function CreateActivity({
   isOpen,

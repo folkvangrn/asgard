@@ -13,8 +13,8 @@ type CreateRequestProps = {
   refetchRequests: VoidFunction;
 };
 
-const GET_VEHICLES_QUERY = 'http://192.168.1.234:8000/api/vehicles';
-const GET_REQUESTS_QUERY = 'http://192.168.1.234:8000/api/requests';
+const GET_VEHICLES_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/vehicles';
+const GET_REQUESTS_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/requests';
 
 export function CreateRequest({
   isOpen,
