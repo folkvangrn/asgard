@@ -81,7 +81,9 @@ export function GenericCreateForm<T extends User | Vehicle | Client | Request | 
           type: 'success',
         });
       } else {
-        toast(prepareNegativeMessage(), {
+        const data = await response.json();
+
+        toast(prepareNegativeMessage(data.message), {
           type: 'error',
         });
       }

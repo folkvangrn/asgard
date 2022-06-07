@@ -19,7 +19,7 @@ export const RequestHeader = ({ error, request, refetchRequest }: RequestHeaderP
 
   const headerChilds = [
     {
-      title: 'Child info:',
+      title: 'Client info:',
       value: `${request?.vehicleClientFirstName} ${request?.vehicleClientLastName}`,
     },
     {
