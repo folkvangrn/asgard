@@ -38,7 +38,11 @@ export function CreateClient({
       validationSchema={Yup.object({
         firstName: Yup.string().required('Required'),
         lastName: Yup.string().required('Required'),
-        phoneNumber: Yup.string().required('Required'),
+        phoneNumber: Yup.string()
+          .required('Required')
+          .matches(/^[1-9]{1}[0-9]{8}$/, {
+            message: 'Invalid Phone number',
+          }),
         email: Yup.string().required('Required'),
         companyName: Yup.string(),
       })}
