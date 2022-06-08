@@ -44,7 +44,9 @@ export function CreateVehicle({
       initialFormValues={initialValues}
       singularName="Vehicle"
       validationSchema={Yup.object({
-        vin: Yup.string().required('Required'),
+        vin: Yup.string()
+          .required('Required')
+         .matches(/^[A-Z]{1}[A-Z0-9]{15}[0-9]$/, { message: 'Invalid VIN' }),
         vehicleClass: Yup.string().required('Required'), // TODO: improve validation
         clientId: Yup.number(), // TODO: improve validation
       })}
