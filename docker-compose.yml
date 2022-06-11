@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  frontend:
+    image: nixen/asgard:beta-release
+    restart: always
+    environment:
+      - REACT_APP_BACKEND_URL=http://vehicle-remedy.nixenos.ovh
+    ports:
+      - 3000:80

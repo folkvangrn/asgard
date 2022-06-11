@@ -9,6 +9,8 @@ import { filterBySearchingPhrase } from './helpers';
 import { Client } from '@/types/Client';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
+const requestUrl = "http://vehicle-remedy.nixenos.ovh" + "/api/v1/clients"
+
 export function ClientList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const [searchingPhrase, setSearchingPhrase] = useState<string>('');
@@ -19,7 +21,7 @@ export function ClientList() {
     isLoading,
     refetchData: refetchClients,
   } = useGet<Client[]>({
-    query: 'http://localhost:8000/api/clients',
+    query: requestUrl,
   });
 
   const filteredClients = clients?.filter((client) =>

@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+      - development
+      - devops
+
+concurrency: ${{ github.ref }}
+
+jobs:
+  hack:
+    runs-on: ubuntu-latest
+    outputs:
+      environment_name: ${{ steps.get_environment.outputs.environment_name }}
+    steps:
+      - id: get_environment
+        run: echo "::set-output name=environment_name::$(echo ${GITHUB_REF#refs/heads/})"
+  build:
+    needs: [hack]
+    runs-on: ubuntu-latest
+    environment: ${{ needs.hack.outputs.environment_name }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Make docker image
+        run: docker login -u nixen -p $TOKEN && make build-docker && make publish-docker
+        env:
+          TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          TAG_NAME: ${{ secrets.TAG_NAME }}

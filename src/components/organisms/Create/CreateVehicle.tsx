@@ -13,10 +13,9 @@ type CreateVehicleProps = {
   refetchVehicles: VoidFunction;
 };
 
-const GET_VEHICLES_QUERY = 'http://localhost:8000/api/vehicles';
-const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
-const GET_VEHICLETYPES_QUERY = 'http://localhost:8000/api/vehicles/types';
-
+const GET_VEHICLES_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/vehicles';
+const GET_CLIENTS_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/clients';
+const GET_VEHICLETYPES_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/vehicles/types';
 export function CreateVehicle({
   isOpen,
   handleCloseModal,

@@ -9,6 +9,8 @@ import { filterBySearchingPhrase } from './helpers';
 import { User } from '@/types/User';
 import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
+
 export function UsersList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const [searchingPhrase, setSearchingPhrase] = useState<string>('');
@@ -19,7 +21,7 @@ export function UsersList() {
     isLoading,
     refetchData,
   } = useGet<User[]>({
-    query: 'http://localhost:8000/api/users',
+    query: requestUrl + '/api/v1/users',
   });
 
   const filteredUsers = users?.filter((user) =>

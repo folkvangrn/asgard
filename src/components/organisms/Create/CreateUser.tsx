@@ -12,7 +12,7 @@ type CreateUserProps = {
   refetchUsers: VoidFunction;
 };
 
-const GET_USERS_QUERY = 'http://localhost:8000/api/users';
+const GET_USERS_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/users';
 
 export function CreateUser({ isOpen, handleCloseModal, userId, refetchUsers }: CreateUserProps) {
   const initialValues: User = {

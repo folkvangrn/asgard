@@ -13,7 +13,7 @@ import { ItemsWrapper } from '@/components/atoms/ItemsWrapper/ItemsWrapper';
 type ActivitiesListProps = {
   requestId?: number;
 };
-
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
 export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const [searchingPhrase, setSearchingPhrase] = useState<string>('');
@@ -21,8 +21,8 @@ export function ActivitiesList({ requestId }: ActivitiesListProps) {
   const { user } = useAuth();
 
   const GET_ACTIVITIES_QUERY = requestId
-    ? `http://localhost:8000/api/requests/${requestId}/activities`
-    : `http://localhost:8000/api/activities?workerid=${user?.id}`;
+    ? requestUrl + `/api/v1/requests/${requestId}/activities`
+    : requestUrl + `/api/v1/activities?workerid=${user?.id}`;
 
   const {
     data: activities,

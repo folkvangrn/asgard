@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { User } from '@/types/User';
+//import 'react-scripts';
 
 interface IAuthContext {
   user: User | null;
@@ -34,7 +35,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signIn = async (username: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:8000/login', {
+      const request_url = "http://vehicle-remedy.nixenos.ovh/api/v1/login";
+      const response = await fetch(request_url, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

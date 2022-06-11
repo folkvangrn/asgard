@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -17,6 +17,7 @@
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
     "react-router-dom": "^6.2.2",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^9.0.2",
     "yup": "^0.32.11"
   },

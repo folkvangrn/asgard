@@ -12,7 +12,7 @@ type CreateClientProps = {
   refetchClients: VoidFunction;
 };
 
-const GET_CLIENTS_QUERY = 'http://localhost:8000/api/clients';
+const GET_CLIENTS_QUERY = 'http://vehicle-remedy.nixenos.ovh/api/v1/clients';
 
 export function CreateClient({
   isOpen,

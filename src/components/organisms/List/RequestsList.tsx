@@ -10,6 +10,8 @@ import { filterBySearchingPhrase } from './helpers';
 
 import { Request } from '@/types';
 
+const requestUrl = "http://vehicle-remedy.nixenos.ovh";
+
 export function RequestsList() {
   const { isModalOpen, handleCloseModal, handleOpenModal } = useModal(false);
   const [searchingPhrase, setSearchingPhrase] = useState<string>('');
@@ -22,7 +24,7 @@ export function RequestsList() {
     isLoading,
     refetchData: refetchRequests,
   } = useGet<Request[]>({
-    query: `http://localhost:8000/api/requests?managerid=${user?.id}`,
+    query: requestUrl + `/api/v1/requests?managerid=${user?.id}`,
   });
 
   const filteredRequests = requests?.filter((request) =>

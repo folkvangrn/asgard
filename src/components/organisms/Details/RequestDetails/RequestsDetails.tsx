@@ -6,7 +6,7 @@ import { ActivitiesList } from '@/components/organisms/List/ActivitiesList';
 
 import styles from './RequestDetails.module.scss';
 import { Request } from '@/types';
-
+const requestUrl = "http://vehicle-remedy.nixenos.ovh" + "/api/v1/requests/";
 export function RequestDetails() {
   const { requestId } = useParams();
   const {
@@ -14,7 +14,7 @@ export function RequestDetails() {
     error,
     isLoading,
     refetchData: refetchRequest,
-  } = useGet<Request>({ query: `http://localhost:8000/api/requests/${requestId}` });
+  } = useGet<Request>({ query: requestUrl + requestId });
 
   return (
     <main className={styles.detailsWrapper}>
