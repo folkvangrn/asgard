@@ -12,6 +12,7 @@ Asgard is a front-end service for our workshop-managing web application.
 ## How to run
 
  - clone this repository: ```git clone https://github.com/folkvangrn/asgard.git```
+ - cd into cloned repo: ```cd asgard```
  - execute ```docker-compose up```
  - done!
 
